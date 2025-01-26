@@ -133,6 +133,52 @@ int loop_exponent(int base, int exp)
   return r;
 }
 
+// e^x = 1 + x/!1 + x^2/!2 + x^3/!3 + x^4/!4
+int taylor_series(int exp)
+{
+  int numerator, denominator = 0;
+}
+
+int store[10];
+
+int fibonacci(int n)
+{
+
+  if (n <= 1)
+  {
+    store[n] = n;
+    return n;
+  }
+
+  if (store[n - 2] == -1)
+  {
+    store[n - 2] = fibonacci(n - 2);
+  }
+  if (store[n - 1] == -1)
+  {
+    store[n - 1] = fibonacci(n - 1);
+  }
+
+  return store[n - 2] + store[n - 1];
+}
+
+int fib_loop(int n)
+{
+  int t0 = 0, t1 = 1, s = 0;
+
+  if (n <= 1)
+    return n;
+
+  for (int i = 2; i <= n; i++)
+  {
+    s = t0 + t1;
+    t0 = t1;
+    t1 = s;
+  }
+
+  return s;
+}
+
 void recursion()
 {
   int n = 3;
@@ -171,4 +217,18 @@ void recursion()
   int recursive_exponent = exponent_recursion(base, 9);
   std::cout << "5 to the power of 2 with loop: " << exponent_with_loop << std::endl;
   std::cout << "5 to the power of 2 with recursion: " << recursive_exponent << std::endl;
+
+  // int taylor_base = 5;
+  // const int taylor_result = taylor_series(taylor_base);
+  // std::cout << "result of taylor series for value: " << taylor_base << " = " << taylor_result << std::endl;
+
+  for (int &ele : store)
+    ele = -1;
+
+  int fib_base = 8;
+  const int recursive_fib_memoized = fibonacci(8);
+
+  const int r_fib = fib_loop(fib_base);
+  std::cout << "Fibonacci result with recursion: " << recursive_fib_memoized << std::endl;
+  std::cout << "Fibonacci result with loop: " << r_fib << std::endl;
 }
