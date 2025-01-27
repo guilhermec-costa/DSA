@@ -139,7 +139,7 @@ int taylor_series(int exp)
   int numerator, denominator = 0;
 }
 
-int store[10];
+int store[100];
 
 int fibonacci(int n)
 {
@@ -151,15 +151,12 @@ int fibonacci(int n)
   }
 
   if (store[n - 2] == -1)
-  {
     store[n - 2] = fibonacci(n - 2);
-  }
   if (store[n - 1] == -1)
-  {
     store[n - 1] = fibonacci(n - 1);
-  }
 
-  return store[n - 2] + store[n - 1];
+  store[n] = store[n - 2] + store[n - 1];
+  return store[n];
 }
 
 int fib_loop(int n)
@@ -170,6 +167,35 @@ int fib_loop(int n)
     return n;
 
   for (int i = 2; i <= n; i++)
+  {
+    s = t0 + t1;
+    t0 = t1;
+    t1 = s;
+  }
+
+  return s;
+}
+
+void sum_ref(int &x)
+{
+  x += 5;
+}
+
+int recursive_fact(int t)
+{
+  if (t == 0)
+    return 1;
+
+  return recursive_fact(t - 1) * t;
+}
+
+int loop_fibonacci(int e)
+{
+  int t0 = 0, t1 = 1, s = 0;
+  if (e <= 1)
+    return e;
+
+  for (int i = 2; i <= e; i++)
   {
     s = t0 + t1;
     t0 = t1;
@@ -226,9 +252,15 @@ void recursion()
     ele = -1;
 
   int fib_base = 8;
-  const int recursive_fib_memoized = fibonacci(8);
-
-  const int r_fib = fib_loop(fib_base);
+  const size_t recursive_fib_memoized = fibonacci(10);
+  const size_t r_fib = fib_loop(10);
   std::cout << "Fibonacci result with recursion: " << recursive_fib_memoized << std::endl;
   std::cout << "Fibonacci result with loop: " << r_fib << std::endl;
+
+  int b = 10;
+  sum_ref(b);
+  std::cout << "value of b: " << b << std::endl;
+
+  printf("%d\n", recursive_fact(5));
+  printf("loop fib: %d", loop_fibonacci(5));
 }
