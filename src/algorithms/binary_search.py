@@ -97,9 +97,28 @@ def binary_search5(elements: List[int], element: int):
     return None
 
 
+def binary_search6(ordered_elements: List[int], element: int):
+    begin = 0
+    end = len(ordered_elements) - 1
+
+    while begin <= end:
+        middle_idx = (begin + end) // 2
+        middle_item = ordered_elements[middle_idx]
+
+        if middle_item == element:
+            return middle_idx
+
+        if element > middle_item:
+            begin = middle_idx + 1
+
+        else:
+            end = middle_idx - 1
+
+
 lst = [1, 3, 5, 7, 9]
 print(binary_search1(lst, 5))
 print(binary_search2(lst, 5))
 print(binary_search3(lst, 5))
 print(binary_search4(lst, 5))
 print(binary_search5(lst, 5))
+print(binary_search6(lst, 5))

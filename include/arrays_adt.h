@@ -4,7 +4,6 @@ class ArrayADT
 {
 private:
   int *A;
-  int length;
   int _size;
 
 public:
@@ -14,6 +13,15 @@ public:
   void display();
   void append(int e);
   void insert(int e, int idx);
-  int at(int idx);
+  int get(int idx);
+  void set(int idx, int e);
   int remove(int idx);
+  int max();
+  int min();
+  int sum();
+  void reverse_fstmethod();
+  void reverse_sndmethod();
+  int length;
 };
+
+int sumArrADT(ArrayADT &arr, int n);
