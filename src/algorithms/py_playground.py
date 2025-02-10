@@ -265,3 +265,160 @@ Common mistakes
 5) Importing with *
 
 """
+
+try:
+    v = 5 / 0
+    f = open("test.txt")
+except ZeroDivisionError:
+    print("Error")
+
+except FileNotFoundError as fne:
+    print(fne.strerror)
+
+except Exception as e:
+    print("unexpected exception: ", e)
+
+# if try does not throw any exception
+else:
+    print("didn't throw any exception")
+
+finally:
+    print("finished execution of block")
+
+
+from enum import Enum
+
+
+class BagColor(Enum):
+    RED = 0
+    BLUE = 1
+    GREEN = 2
+
+
+class Bag:
+
+    nr_bags: int = 0
+    # class variable. Only accessable via the class, or an instance of the class
+    #
+    # when accessed via the instance, it access the parent/inherited class attribute
+
+    # but when modified via the instance, it becomes part of that particular instance
+    # but still remaining part of the other instances and the class as well
+
+    # when accessing a class variable from an instance, it first checks if the instance contains that one. If not, than it checks at the class scope
+    cls_v = "generic information"
+
+    def __init__(self, color: BagColor):
+        self.color = color
+        Bag.nr_bags += 1
+
+    def __str__(self):
+        return "A bag of color {}".format(self.color.name)
+
+    # allow a method to be called as property
+    @property
+    def properties(self):
+        return {"color": self.color.name, "info": self.cls_v}
+
+    def open(self):
+        self.opened = True
+
+    def close(self):
+        self.opened = False
+
+    @classmethod
+    # class as first argument
+    # can be alternative constructors
+    def set_cls_v(cls):
+        cls.cls_v = 200
+
+    @staticmethod
+    # neither instance or class as first argument
+    # some relation to the container class
+    def stcmethod():
+        pass
+
+    # for multiple ways of constructions
+    @classmethod
+    def from_color(cls, color: BagColor):
+        return cls(color=color)
+
+    def __repr__(self):
+        return "Representation of bag"
+
+
+blue_bag = Bag(BagColor.BLUE)
+red_bag = Bag(BagColor.RED)
+blue_bag.slots = 10
+
+
+print(blue_bag.slots)
+print("bag object: ", blue_bag)
+print(blue_bag.properties)
+# calling the method from the class, passing the instance as argument
+Bag.open(blue_bag)
+print("Is blue bag opened: ", blue_bag.opened)
+Bag.close(blue_bag)
+print("Is blue bag opened: ", blue_bag.opened)
+
+# cls_v is not from blue_bag
+print(blue_bag.__dict__)
+
+# cls_v is from Bag
+print(Bag.__dict__)
+
+print(Bag.nr_bags)
+
+# becomes a member of blue_bag
+blue_bag.cls_v = 5
+
+print(blue_bag.__dict__)
+
+bg = Bag.from_color(color=BagColor.BLUE)
+print(bg)
+
+# dunder methods (builtin methods simulation && operator overloading)
+# this calls the dunder method __repr__()
+print(repr(bg))
+print(bg.__repr__())
+print(str(bg))
+print(bg.__str__())
+
+
+class Employee:
+
+    def __init__(self, first, last):
+        self.first = first
+        self.last = last
+        self._email = ""
+
+    def fullname(self):
+        return "{} {}".format(self.first, self.last)
+
+    # access the method as a property
+    # no explicit getters and setters
+    # no need to change API on code changes
+    @property
+    def email(self) -> str:
+        return self._email
+
+    @email.setter
+    def email(self, value):
+        self._email = value
+
+    # destructor of a property
+    @email.deleter
+    def email(self):
+        self._email = None
+
+
+emp_1 = Employee("John", "Smith")
+emp_1.first = "Churros"
+
+print(emp_1.first)
+emp_1.email = "some random email"
+print(emp_1.email)
+print(emp_1.fullname())
+del emp_1.email
+
+print(emp_1.email)
