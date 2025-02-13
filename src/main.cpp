@@ -11,5 +11,6 @@ int main()
   // recursion();
   // arrays();
   // arrays_adt();
-  strings();
+  // strings();
+  linked_lists();
 }
