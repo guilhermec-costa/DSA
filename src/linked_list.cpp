@@ -1,4 +1,5 @@
 #include <iostream>
+#include <limits>
 
 struct Node
 {
@@ -23,6 +24,25 @@ void display_nodes(Node *n)
     return;
 
   display_nodes(n->next);
+}
+
+void recursive_display(struct Node *cur_node)
+{
+  if (cur_node != NULL)
+  {
+    std::cout << cur_node->data << std::endl;
+    recursive_display(cur_node->next);
+  }
+}
+
+void backwards_recursive_display(struct Node *cur_node)
+{
+  struct Node *p_cp = cur_node;
+  if (p_cp != NULL)
+  {
+    backwards_recursive_display(p_cp->next);
+    std::cout << p_cp->data << std::endl;
+  }
 }
 
 struct Node *create_linked_list(int a[], int n)
@@ -51,6 +71,60 @@ struct Node *create_linked_list(int a[], int n)
   }
 
   return first;
+}
+
+int count_nodes(struct Node *first)
+{
+  struct Node *cur_node = first;
+
+  int count = 0;
+  while (cur_node != NULL)
+  {
+    count++;
+    cur_node = cur_node->next;
+  }
+
+  return count;
+}
+
+int count_recursively(struct Node *n)
+{
+  if (n == NULL)
+    return 0;
+  return count_recursively(n->next) + 1;
+}
+
+int add(struct Node *n)
+{
+  int sum = 0;
+  if (n != NULL)
+  {
+    sum += n->data;
+    return add(n->next) + sum;
+  }
+
+  return 0;
+}
+
+int max_n(struct Node *n)
+{
+  int max = INT_MIN;
+  while (n)
+  {
+    if (n->data > max)
+      max = n->data;
+    n = n->next;
+  }
+  return max;
+}
+
+int RMax_n(struct Node *n)
+{
+  int x = 0;
+  if (!n)
+    return INT_MIN;
+  x = RMax_n(n->next);
+  return x > n->data ? x : n->data;
 }
 
 void linked_lists()
@@ -91,6 +165,30 @@ void linked_lists()
     p_to_LL = p_to_LL->next;
   }
 
+  std::cout << "-------------" << "\n";
+  int lst2[5] = {15, 2, 3, 4, 5};
+  struct Node *p_to_LL2 = create_linked_list(lst2, 5);
+  display_nodes(p_to_LL2);
+  std::cout << "-------------" << "\n";
+  int lst3[5] = {15, 2, 3, 4, 5};
+  struct Node *p_to_LL3 = create_linked_list(lst2, 5);
+  recursive_display(p_to_LL3);
+  std::cout << "-------------" << "\n";
+  backwards_recursive_display(p_to_LL3);
+
+  int lst5[10] = {15, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+  struct Node *p_to_LL5 = create_linked_list(lst5, 10);
+  std::cout << "Count with while: " << count_nodes(p_to_LL5) << std::endl;
+  std::cout << "Count with recursion: " << count_recursively(p_to_LL5) << std::endl;
+
+  int sum_of_ll = add(p_to_LL5);
+  std::cout << "sum: " << sum_of_ll << "\n";
+
+  int lst6[5] = {7, 10, 5, 0, -1};
+  struct Node *p_toLL6 = create_linked_list(lst6, 5);
+
+  std::cout << max_n(p_toLL6) << std::endl;
+  std::cout << RMax_n(p_toLL6) << std::endl;
   delete p_first;
   // delete p_to_LL;
   // p_to_LL_ref = nullptr;
