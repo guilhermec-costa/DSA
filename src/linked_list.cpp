@@ -127,6 +127,98 @@ int RMax_n(struct Node *n)
   return x > n->data ? x : n->data;
 }
 
+struct Node *search(struct Node *n, int e)
+{
+  if (!n)
+    return NULL;
+
+  if (n->data == e)
+    return n;
+
+  return search(n->next, e);
+}
+
+struct Node *first;
+struct Node *perfomant_search(struct Node *n, int e)
+{
+  struct Node *previous = NULL;
+
+  while (n)
+  {
+    if (n->data == e)
+    {
+      // move to front operation
+      previous->next = n->next;
+      n->next = first;
+      first = n;
+      return n;
+    }
+    previous = n;
+    n = n->next;
+  }
+
+  return NULL;
+}
+
+struct Node *r_search(struct Node *n, int e)
+{
+  if (!n)
+    return NULL;
+  if (n->data == e)
+    return n;
+  return r_search(n->next, e);
+}
+
+void *insert_first(struct Node *n, int e)
+{
+  struct Node *nnode = new Node;
+  nnode->data = e;
+  nnode->next = n;
+  n = nnode;
+}
+
+void insert_at(struct Node *n, int at, int e)
+{
+  int node_count = 0;
+
+  for (int i = 0; i < at - 1; i++)
+    n = n->next;
+
+  struct Node *nnode = new Node;
+  nnode->data = e;
+  nnode->next = n->next;
+  n->next = nnode;
+}
+
+void insert(struct Node *&first, int pos, int x)
+{
+  struct Node *t, *p;
+
+  if (pos == 0)
+  {
+    t = new Node;
+    t->data = x;
+    t->next = first;
+    first = t;
+  }
+  else if (pos > 0)
+  {
+    p = first;
+    for (int i = 0; i < pos - 1 && pos; i++)
+      p = p->next;
+
+    if (p)
+    {
+      t = new Node;
+      t->data = x;
+      t->next = p->next;
+      p->next = t;
+    }
+  }
+}
+
+// not possible to perform binary search
+// linear search only
 void linked_lists()
 {
 
@@ -184,11 +276,29 @@ void linked_lists()
   int sum_of_ll = add(p_to_LL5);
   std::cout << "sum: " << sum_of_ll << "\n";
 
-  int lst6[5] = {7, 10, 5, 0, -1};
-  struct Node *p_toLL6 = create_linked_list(lst6, 5);
+  int lst6[6] = {7, 10, 65, 5, 0, -1};
+  struct Node *p_toLL6 = create_linked_list(lst6, 6);
 
   std::cout << max_n(p_toLL6) << std::endl;
   std::cout << RMax_n(p_toLL6) << std::endl;
+  std::cout << search(p_toLL6, 8) << std::endl;
+  std::cout << r_search(p_toLL6, 65)->data << std::endl;
+  // std::cout << perfomant_search(p_toLL6, 65) << std::endl;
+  std::cout << "-------------" << "\n";
+  display_nodes(p_toLL6);
+  int lst7[6] = {0, 1, 2, 10, 5, 10};
+  struct Node *n = create_linked_list(lst7, 6);
+  std::cout << "-------------" << "\n";
+  display_nodes(n);
+  std::cout << "-------------" << "\n";
+  insert_at(n, 3, 15);
+  display_nodes(n);
+  std::cout << "-------------" << "\n";
+  int lla[6] = {0, 1, 2, 10, 5, 10};
+  struct Node *llc = create_linked_list(lla, 6);
+  insert(llc, 0, 25);
+  display_nodes(llc);
+
   delete p_first;
   // delete p_to_LL;
   // p_to_LL_ref = nullptr;
