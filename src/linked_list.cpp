@@ -6,7 +6,7 @@ struct Node
   int data;
   // pointer to a memory location, where another Node is stored
   // self-referential structure
-  struct Node *next;
+  struct Node *next = nullptr;
 }; // 4 bytes total
 
 int count_linked_list_nodes(Node *n)
@@ -17,12 +17,11 @@ int count_linked_list_nodes(Node *n)
   return count_linked_list_nodes(n->next) + 1;
 };
 
-void display_nodes(Node *n)
+void display_nodes(struct Node *n)
 {
-  std::cout << n->data << std::endl;
-  if (!n->next)
+  if (!n)
     return;
-
+  std::cout << n->data << std::endl;
   display_nodes(n->next);
 }
 
@@ -169,25 +168,25 @@ struct Node *r_search(struct Node *n, int e)
   return r_search(n->next, e);
 }
 
-void *insert_first(struct Node *n, int e)
+void insert_first(struct Node *&first, int e)
 {
   struct Node *nnode = new Node;
   nnode->data = e;
-  nnode->next = n;
-  n = nnode;
+  nnode->next = first;
+  first = nnode;
 }
 
 void insert_at(struct Node *n, int at, int e)
 {
-  int node_count = 0;
+  struct Node *p = n;
 
   for (int i = 0; i < at - 1; i++)
-    n = n->next;
+    p = p->next;
 
   struct Node *nnode = new Node;
   nnode->data = e;
-  nnode->next = n->next;
-  n->next = nnode;
+  nnode->next = p->next;
+  p->next = nnode;
 }
 
 void insert(struct Node *&first, int pos, int x)
@@ -217,8 +216,102 @@ void insert(struct Node *&first, int pos, int x)
   }
 }
 
+struct Node *fst_for_deletion = NULL;
+int delete_at(struct Node *p, int pos)
+{
+  int x;
+  if (pos == 0)
+  {
+    fst_for_deletion = p->next;
+    x = p->data;
+    delete p;
+    p = nullptr;
+  }
+  else
+  {
+    struct Node *q = NULL;
+    for (int i = 0; i < pos && p; i++)
+    {
+      q = p;
+      p = p->next;
+    }
+
+    q->next = p->next;
+    x = p->data;
+    delete p;
+    p = nullptr;
+  }
+
+  return x;
+}
+
+struct Node *last_for_sorted = NULL;
+bool is_sorted(struct Node *p)
+{
+  last_for_sorted = p;
+  while (p != NULL)
+  {
+    if (p->data < last_for_sorted->data)
+      return false;
+
+    last_for_sorted = p;
+    p = p->next;
+  }
+
+  return true;
+}
+
+struct Node *last = NULL;
+
+// constant time O(1)
+void append(int e)
+{
+  struct Node *t;
+
+  t = new Node;
+  t->data = e;
+  t->next = NULL;
+  last->next = t;
+  last = t;
+}
+
 // not possible to perform binary search
 // linear search only
+
+// copy of the pointer. When dereferencing, it is possible to change the value
+// but not possible to change the address, unless it is passed as reference
+void change_adrr(int *&i)
+{
+  int *n = new int(20);
+  i = n;
+}
+
+struct Node *fst;
+void insert_sorted(struct Node *p, int e)
+{
+  struct Node *t, *q = NULL;
+  t = new Node;
+  t->data = e;
+  t->next = NULL;
+
+  while (p && p->data < e)
+  {
+    q = p;
+    p = p->next;
+  }
+
+  if (p == fst)
+  {
+    t->next = fst;
+    fst = t;
+  }
+  else
+  {
+    t->next = q->next;
+    q->next = t;
+  }
+}
+
 void linked_lists()
 {
 
@@ -289,8 +382,11 @@ void linked_lists()
   int lst7[6] = {0, 1, 2, 10, 5, 10};
   struct Node *n = create_linked_list(lst7, 6);
   std::cout << "-------------" << "\n";
+  std::cout << "Inserting in first position" << "\n";
+  insert_first(n, 45);
   display_nodes(n);
   std::cout << "-------------" << "\n";
+  std::cout << "Inserting in third position" << "\n";
   insert_at(n, 3, 15);
   display_nodes(n);
   std::cout << "-------------" << "\n";
@@ -299,6 +395,53 @@ void linked_lists()
   insert(llc, 0, 25);
   display_nodes(llc);
 
+  std::cout << "-------------" << "\n";
+  int *i = new int(10);
+  std::cout << "addr 1: " << i << "\n";
+  change_adrr(i);
+  std::cout << "addr 2: " << i << "\n";
+  std::cout << "-------------" << "\n";
+  std::cout << "Creating linked list by inserting" << "\n";
+  struct Node *by_inserting = new Node;
+  insert(by_inserting, 0, 5);
+  insert(by_inserting, 1, 15);
+  insert(by_inserting, 2, -50);
+  insert(by_inserting, 0, 15);
+  display_nodes(by_inserting);
+
+  std::cout << "-------------" << "\n";
+  std::cout << "Appending to linked list" << "\n";
+  struct Node *first_node = new Node;
+  first_node->data = 10;
+  first_node->next = NULL;
+  last = first_node;
+  append(15);
+  append(20);
+  display_nodes(first_node);
+  std::cout << "-------------" << "\n";
+  std::cout << "Inserting in sorted linked list" << "\n";
+  int x[6] = {0, 1, 2, 10, 18, 26};
+  struct Node *xn = create_linked_list(x, 6);
+  insert_sorted(xn, 19);
+  insert_sorted(xn, 5);
+  display_nodes(xn);
+  std::cout << "-------------" << "\n";
+  std::cout << "Deleting third idx from linked list" << "\n";
+  fst_for_deletion = xn;
+  delete_at(fst_for_deletion, 3);
+  display_nodes(fst_for_deletion);
+  std::cout << "-------------" << "\n";
+  int deleted = delete_at(fst_for_deletion, 1);
+  display_nodes(fst_for_deletion);
+  std::cout << "-------------" << "\n";
+  std::cout << deleted << "\n";
+
+  int y[6] = {-1, 1, 3, 4, 5, 20};
+  struct Node *yn = create_linked_list(y, 6);
+  std::cout << "-------------" << "\n";
+  std::cout << "Checking if is sorted" << "\n";
+  std::cout << is_sorted(fst_for_deletion) << std::endl;
+  std::cout << is_sorted(yn) << std::endl;
   delete p_first;
   // delete p_to_LL;
   // p_to_LL_ref = nullptr;
