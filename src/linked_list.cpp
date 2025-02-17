@@ -248,17 +248,38 @@ int delete_at(struct Node *p, int pos)
 struct Node *last_for_sorted = NULL;
 bool is_sorted(struct Node *p)
 {
-  last_for_sorted = p;
+  int max = INT_MIN;
   while (p != NULL)
   {
-    if (p->data < last_for_sorted->data)
+    if (p->data < max)
       return false;
 
-    last_for_sorted = p;
+    max = p->data;
     p = p->next;
   }
 
   return true;
+}
+
+void remove_duplicate_from_sorted(struct Node *p)
+{
+  struct Node *q = p->next;
+
+  while (q != NULL)
+  {
+    if (p->data != q->data)
+    {
+      // sliding pointers
+      p = q;
+      q = q->next;
+    }
+    else
+    {
+      p->next = q->next;
+      delete q;
+      q = p->next;
+    }
+  }
 }
 
 struct Node *last = NULL;
@@ -310,6 +331,65 @@ void insert_sorted(struct Node *p, int e)
     t->next = q->next;
     q->next = t;
   }
+}
+
+void reverse_links(struct Node *p, int l)
+{
+  struct Node *first = p;
+  int aux[l] = {0};
+  int i = 0;
+
+  while (first != NULL)
+  {
+    aux[i++] = first->data;
+    first = first->next;
+  }
+
+  // bring i back one position
+  i--;
+  while (p != NULL)
+  {
+    p->data = aux[i--];
+    p = p->next;
+  }
+}
+
+struct Node *first_for_reverse = NULL;
+void reverse_sliding_pointers(struct Node *p)
+{
+  if (!first_for_reverse)
+    first_for_reverse = p;
+
+  struct Node *r = NULL, *q = NULL;
+
+  while (p != NULL)
+  {
+    // sliding pointers
+    // always prefer this method
+    r = q;
+    q = p;
+    p = p->next;
+    // reverse the link
+    q->next = r;
+  }
+
+  // change the last node to be the first
+  first_for_reverse = q;
+}
+
+struct Node *first_for_reverse_recursive;
+void reverse_recursive(struct Node *p, struct Node *prev = NULL)
+{
+  if (!p)
+  {
+    first_for_reverse_recursive = prev;
+    return;
+  }
+
+  struct Node *next = p->next;
+  // reverse the link
+  p->next = prev;
+  reverse_recursive(next, p);
 }
 
 void linked_lists()
@@ -436,12 +516,35 @@ void linked_lists()
   std::cout << "-------------" << "\n";
   std::cout << deleted << "\n";
 
-  int y[6] = {-1, 1, 3, 4, 5, 20};
+  int y[6] = {-1, 1, 2, 3, 4, 5};
   struct Node *yn = create_linked_list(y, 6);
   std::cout << "-------------" << "\n";
   std::cout << "Checking if is sorted" << "\n";
   std::cout << is_sorted(fst_for_deletion) << std::endl;
   std::cout << is_sorted(yn) << std::endl;
+  std::cout << "-------------" << "\n";
+  std::cout << "Removing duplicates from sorted linked list" << "\n";
+  int z[11] = {1, 2, 2, 3, 4, 5, 5, 6, 9, 9, 10};
+  struct Node *zn = create_linked_list(z, 11);
+  remove_duplicate_from_sorted(zn);
+  display_nodes(zn);
+  std::cout << "-------------" << "\n";
+  std::cout << "Reversing linked list" << "\n";
+  reverse_links(zn, 11);
+  display_nodes(zn);
+  std::cout << "-------------" << "\n";
+  std::cout << "Reversing linked list with sliding pointers" << "\n";
+  first_for_reverse = zn;
+  reverse_sliding_pointers(first_for_reverse);
+  display_nodes(first_for_reverse);
+  std::cout << "-------------" << "\n";
+  reverse_sliding_pointers(first_for_reverse);
+  display_nodes(first_for_reverse);
+  std::cout << "-------------" << "\n";
+  std::cout << "Reversing linked list with recursion" << "\n";
+  first_for_reverse_recursive = zn;
+  reverse_recursive(first_for_reverse_recursive);
+  display_nodes(first_for_reverse_recursive);
   delete p_first;
   // delete p_to_LL;
   // p_to_LL_ref = nullptr;
