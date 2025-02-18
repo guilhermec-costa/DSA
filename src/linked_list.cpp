@@ -392,6 +392,56 @@ void reverse_recursive(struct Node *p, struct Node *prev = NULL)
   reverse_recursive(next, p);
 }
 
+void concat(struct Node *f, struct Node *s)
+{
+  while (f->next != NULL)
+    f = f->next;
+  f->next = s;
+}
+
+// merge: combine two sorted list into a single sorted list
+struct Node *merge(struct Node *f, struct Node *s)
+{
+  struct Node *new_linked_list = NULL, *last = NULL;
+  if (f->data < s->data)
+  {
+    new_linked_list = last = f;
+    f = f->next;
+    last->next = NULL;
+  }
+  else
+  {
+    new_linked_list = last = s;
+    s = s->next;
+    last->next = NULL;
+  }
+
+  while (f && s)
+  {
+    if (f->data < s->data)
+    {
+      last->next = f;
+      last = f;
+      f = f->next;
+      last->next = NULL;
+    }
+    else
+    {
+      last->next = s;
+      last = s;
+      s = s->next;
+      last->next = NULL;
+    }
+  }
+
+  if (f)
+    last->next = f;
+  else
+    last->next = s;
+
+  return new_linked_list;
+}
+
 void linked_lists()
 {
 
@@ -545,6 +595,22 @@ void linked_lists()
   first_for_reverse_recursive = zn;
   reverse_recursive(first_for_reverse_recursive);
   display_nodes(first_for_reverse_recursive);
+  std::cout << "-------------" << "\n";
+  std::cout << "Concatenating 2 linked lists" << "\n";
+  int m[3] = {1, 2, 3};
+  struct Node *lm = create_linked_list(m, 3);
+  int b[3] = {4, 5, 6};
+  struct Node *ln = create_linked_list(b, 3);
+  concat(lm, ln);
+  display_nodes(lm);
+  std::cout << "-------------" << "\n";
+  std::cout << "Merging 2 linked lists" << "\n";
+  int g[3] = {1, 2, 3};
+  struct Node *lg = create_linked_list(g, 3);
+  int h[3] = {4, 5, 6};
+  struct Node *lh = create_linked_list(h, 3);
+  struct Node *merged = merge(lg, lh);
+  display_nodes(merged);
   delete p_first;
   // delete p_to_LL;
   // p_to_LL_ref = nullptr;

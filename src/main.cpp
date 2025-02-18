@@ -4,6 +4,7 @@ void arrays();
 void arrays_adt();
 void linked_lists();
 void strings();
+void stacks();
 
 int main()
 {
@@ -12,5 +13,6 @@ int main()
   // arrays();
   // arrays_adt();
   // strings();
-  linked_lists();
+  // linked_lists();
+  stacks();
 }
