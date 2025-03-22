@@ -93,7 +93,7 @@ void _strs()
     *ptr_name += 32;
   }
 
-  for (const &cr : name)
+  for (const char& cr : name)
   {
     std::cout << (char)cr;
   }

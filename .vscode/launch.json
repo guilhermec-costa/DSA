@@ -1,25 +1,30 @@
 {
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "name": "C/C++ Runner: Debug Session",
-      "type": "cppdbg",
-      "request": "launch",
-      "args": [],
-      "stopAtEntry": false,
-      "externalConsole": true,
-      "cwd": "${workspaceFolder}",
-      "program": "${workspaceFolder}\\build\\DSA_debug.exe",
-      "MIMode": "gdb",
-      "miDebuggerPath": "C:\\msys64\\ucrt64\\bin\\gdb.exe",
-      "setupCommands": [
+    "version": "0.2.0",
+    "configurations": [
         {
-          "description": "Enable pretty-printing for gdb",
-          "text": "-enable-pretty-printing",
-          "ignoreFailures": true
+            "name": "C++ Launch Debug",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/DSA",  // Caminho para o executável
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": true,  // Configurar para abrir um terminal externo
+            "MIMode": "gdb",  // Usar o GDB como o depurador
+            "setupCommands": [
+                {
+                    "description": "Habilitar a exibição das variáveis C++",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "miDebuggerPath": "/usr/bin/gdb",  // Caminho do GDB no Linux
+            // "preLaunchTask": "build",  // Tarefa para compilar antes de iniciar a depuração
+            "logging": { "moduleLoad": false },
+            "serverLaunchTimeout": 10000,
+            "filterStderr": true,
+            "filterStdout": true
         }
-      ]
-      // "preLaunchTask": "build-debug"
-    },
-  ]
+    ]
 }

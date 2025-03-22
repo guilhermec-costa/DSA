@@ -9,6 +9,7 @@ ArrayADT::ArrayADT(int size)
 };
 
 ArrayADT::~ArrayADT()
+
 {
   delete[] this->A;
 };
