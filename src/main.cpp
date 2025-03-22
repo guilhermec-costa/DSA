@@ -17,10 +17,6 @@ int main()
   // arrays_adt();
   // strings();
   // linked_lists();
-<<<<<<< HEAD
+  // stacks();
   queues();
 }
-=======
-  stacks();
-}
->>>>>>> f81772b871f41115467b3b448ae4eb1a8b5f859e
