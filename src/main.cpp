@@ -8,6 +8,8 @@ void linked_lists();
 void strings();
 void queues();
 void stacks();
+void heaps();
+void trees();
 
 int main()
 {
@@ -18,5 +20,7 @@ int main()
   // strings();
   // linked_lists();
   // stacks();
-  queues();
+  // queues();
+  // heaps();
+  trees();
 }

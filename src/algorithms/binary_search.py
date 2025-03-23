@@ -114,6 +114,22 @@ def binary_search6(ordered_elements: List[int], element: int):
         else:
             end = middle_idx - 1
 
+def binary_search(elements: List[int], target: str):
+  begin = 0
+  end = len(elements) - 1
+
+  while(begin <= end):
+      middle_idx = (begin + end) // 2
+      middle_item = elements[middle_idx]
+
+      if(middle_item == target):
+          return middle_idx
+
+      if(target > middle_item):
+          begin = middle_idx + 1
+      else:
+          end = middle_idx - 1
+
 
 lst = [1, 3, 5, 7, 9]
 print(binary_search1(lst, 5))

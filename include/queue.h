@@ -7,8 +7,10 @@
 // 1 - dequeued slots can not be reutilized
 // 2 - each slot can only be used one time
 // 3 - queue can be empty and full at the sime time (rear at arrays size - 1 && front in the same position as rear)
-
 // (rear + 1) % size
+
+// DEQueue: double endeded queue: both rear and front can insert/delete
+// is this case, FIFO Discipline is not followed
 class Queue
 {
 private:

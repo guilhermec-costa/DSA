@@ -196,6 +196,33 @@ src/arrays_adt.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DSA_debug.dir/build.make CMakeFiles/DSA_debug.dir/src/arrays_adt.cpp.s
 .PHONY : src/arrays_adt.cpp.s
 
+src/heap.o: src/heap.cpp.o
+.PHONY : src/heap.o
+
+# target to build an object file
+src/heap.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DSA.dir/build.make CMakeFiles/DSA.dir/src/heap.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DSA_debug.dir/build.make CMakeFiles/DSA_debug.dir/src/heap.cpp.o
+.PHONY : src/heap.cpp.o
+
+src/heap.i: src/heap.cpp.i
+.PHONY : src/heap.i
+
+# target to preprocess a source file
+src/heap.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DSA.dir/build.make CMakeFiles/DSA.dir/src/heap.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DSA_debug.dir/build.make CMakeFiles/DSA_debug.dir/src/heap.cpp.i
+.PHONY : src/heap.cpp.i
+
+src/heap.s: src/heap.cpp.s
+.PHONY : src/heap.s
+
+# target to generate assembly for a file
+src/heap.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DSA.dir/build.make CMakeFiles/DSA.dir/src/heap.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DSA_debug.dir/build.make CMakeFiles/DSA_debug.dir/src/heap.cpp.s
+.PHONY : src/heap.cpp.s
+
 src/linked_list.o: src/linked_list.cpp.o
 .PHONY : src/linked_list.o
 
@@ -331,6 +358,33 @@ src/revision.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DSA_debug.dir/build.make CMakeFiles/DSA_debug.dir/src/revision.cpp.s
 .PHONY : src/revision.cpp.s
 
+src/stack.o: src/stack.cpp.o
+.PHONY : src/stack.o
+
+# target to build an object file
+src/stack.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DSA.dir/build.make CMakeFiles/DSA.dir/src/stack.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DSA_debug.dir/build.make CMakeFiles/DSA_debug.dir/src/stack.cpp.o
+.PHONY : src/stack.cpp.o
+
+src/stack.i: src/stack.cpp.i
+.PHONY : src/stack.i
+
+# target to preprocess a source file
+src/stack.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DSA.dir/build.make CMakeFiles/DSA.dir/src/stack.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DSA_debug.dir/build.make CMakeFiles/DSA_debug.dir/src/stack.cpp.i
+.PHONY : src/stack.cpp.i
+
+src/stack.s: src/stack.cpp.s
+.PHONY : src/stack.s
+
+# target to generate assembly for a file
+src/stack.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DSA.dir/build.make CMakeFiles/DSA.dir/src/stack.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DSA_debug.dir/build.make CMakeFiles/DSA_debug.dir/src/stack.cpp.s
+.PHONY : src/stack.cpp.s
+
 src/strings.o: src/strings.cpp.o
 .PHONY : src/strings.o
 
@@ -374,6 +428,9 @@ help:
 	@echo "... src/arrays_adt.o"
 	@echo "... src/arrays_adt.i"
 	@echo "... src/arrays_adt.s"
+	@echo "... src/heap.o"
+	@echo "... src/heap.i"
+	@echo "... src/heap.s"
 	@echo "... src/linked_list.o"
 	@echo "... src/linked_list.i"
 	@echo "... src/linked_list.s"
@@ -389,6 +446,9 @@ help:
 	@echo "... src/revision.o"
 	@echo "... src/revision.i"
 	@echo "... src/revision.s"
+	@echo "... src/stack.o"
+	@echo "... src/stack.i"
+	@echo "... src/stack.s"
 	@echo "... src/strings.o"
 	@echo "... src/strings.i"
 	@echo "... src/strings.s"

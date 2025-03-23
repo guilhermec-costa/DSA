@@ -100,10 +100,24 @@ CMakeFiles/DSA.dir/src/arrays_adt.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/DSA.dir/src/arrays_adt.cpp.s"
 	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/guichina/dev/DSA/src/arrays_adt.cpp -o CMakeFiles/DSA.dir/src/arrays_adt.cpp.s
 
+CMakeFiles/DSA.dir/src/heap.cpp.o: CMakeFiles/DSA.dir/flags.make
+CMakeFiles/DSA.dir/src/heap.cpp.o: /home/guichina/dev/DSA/src/heap.cpp
+CMakeFiles/DSA.dir/src/heap.cpp.o: CMakeFiles/DSA.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/guichina/dev/DSA/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/DSA.dir/src/heap.cpp.o"
+	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DSA.dir/src/heap.cpp.o -MF CMakeFiles/DSA.dir/src/heap.cpp.o.d -o CMakeFiles/DSA.dir/src/heap.cpp.o -c /home/guichina/dev/DSA/src/heap.cpp
+
+CMakeFiles/DSA.dir/src/heap.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/DSA.dir/src/heap.cpp.i"
+	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/guichina/dev/DSA/src/heap.cpp > CMakeFiles/DSA.dir/src/heap.cpp.i
+
+CMakeFiles/DSA.dir/src/heap.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/DSA.dir/src/heap.cpp.s"
+	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/guichina/dev/DSA/src/heap.cpp -o CMakeFiles/DSA.dir/src/heap.cpp.s
+
 CMakeFiles/DSA.dir/src/linked_list.cpp.o: CMakeFiles/DSA.dir/flags.make
 CMakeFiles/DSA.dir/src/linked_list.cpp.o: /home/guichina/dev/DSA/src/linked_list.cpp
 CMakeFiles/DSA.dir/src/linked_list.cpp.o: CMakeFiles/DSA.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/guichina/dev/DSA/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/DSA.dir/src/linked_list.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/guichina/dev/DSA/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/DSA.dir/src/linked_list.cpp.o"
 	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DSA.dir/src/linked_list.cpp.o -MF CMakeFiles/DSA.dir/src/linked_list.cpp.o.d -o CMakeFiles/DSA.dir/src/linked_list.cpp.o -c /home/guichina/dev/DSA/src/linked_list.cpp
 
 CMakeFiles/DSA.dir/src/linked_list.cpp.i: cmake_force
@@ -117,7 +131,7 @@ CMakeFiles/DSA.dir/src/linked_list.cpp.s: cmake_force
 CMakeFiles/DSA.dir/src/main.cpp.o: CMakeFiles/DSA.dir/flags.make
 CMakeFiles/DSA.dir/src/main.cpp.o: /home/guichina/dev/DSA/src/main.cpp
 CMakeFiles/DSA.dir/src/main.cpp.o: CMakeFiles/DSA.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/guichina/dev/DSA/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/DSA.dir/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/guichina/dev/DSA/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/DSA.dir/src/main.cpp.o"
 	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DSA.dir/src/main.cpp.o -MF CMakeFiles/DSA.dir/src/main.cpp.o.d -o CMakeFiles/DSA.dir/src/main.cpp.o -c /home/guichina/dev/DSA/src/main.cpp
 
 CMakeFiles/DSA.dir/src/main.cpp.i: cmake_force
@@ -131,7 +145,7 @@ CMakeFiles/DSA.dir/src/main.cpp.s: cmake_force
 CMakeFiles/DSA.dir/src/queue.cpp.o: CMakeFiles/DSA.dir/flags.make
 CMakeFiles/DSA.dir/src/queue.cpp.o: /home/guichina/dev/DSA/src/queue.cpp
 CMakeFiles/DSA.dir/src/queue.cpp.o: CMakeFiles/DSA.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/guichina/dev/DSA/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/DSA.dir/src/queue.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/guichina/dev/DSA/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/DSA.dir/src/queue.cpp.o"
 	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DSA.dir/src/queue.cpp.o -MF CMakeFiles/DSA.dir/src/queue.cpp.o.d -o CMakeFiles/DSA.dir/src/queue.cpp.o -c /home/guichina/dev/DSA/src/queue.cpp
 
 CMakeFiles/DSA.dir/src/queue.cpp.i: cmake_force
@@ -145,7 +159,7 @@ CMakeFiles/DSA.dir/src/queue.cpp.s: cmake_force
 CMakeFiles/DSA.dir/src/recursion.cpp.o: CMakeFiles/DSA.dir/flags.make
 CMakeFiles/DSA.dir/src/recursion.cpp.o: /home/guichina/dev/DSA/src/recursion.cpp
 CMakeFiles/DSA.dir/src/recursion.cpp.o: CMakeFiles/DSA.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/guichina/dev/DSA/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/DSA.dir/src/recursion.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/guichina/dev/DSA/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/DSA.dir/src/recursion.cpp.o"
 	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DSA.dir/src/recursion.cpp.o -MF CMakeFiles/DSA.dir/src/recursion.cpp.o.d -o CMakeFiles/DSA.dir/src/recursion.cpp.o -c /home/guichina/dev/DSA/src/recursion.cpp
 
 CMakeFiles/DSA.dir/src/recursion.cpp.i: cmake_force
@@ -159,7 +173,7 @@ CMakeFiles/DSA.dir/src/recursion.cpp.s: cmake_force
 CMakeFiles/DSA.dir/src/revision.cpp.o: CMakeFiles/DSA.dir/flags.make
 CMakeFiles/DSA.dir/src/revision.cpp.o: /home/guichina/dev/DSA/src/revision.cpp
 CMakeFiles/DSA.dir/src/revision.cpp.o: CMakeFiles/DSA.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/guichina/dev/DSA/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/DSA.dir/src/revision.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/guichina/dev/DSA/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/DSA.dir/src/revision.cpp.o"
 	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DSA.dir/src/revision.cpp.o -MF CMakeFiles/DSA.dir/src/revision.cpp.o.d -o CMakeFiles/DSA.dir/src/revision.cpp.o -c /home/guichina/dev/DSA/src/revision.cpp
 
 CMakeFiles/DSA.dir/src/revision.cpp.i: cmake_force
@@ -170,10 +184,24 @@ CMakeFiles/DSA.dir/src/revision.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/DSA.dir/src/revision.cpp.s"
 	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/guichina/dev/DSA/src/revision.cpp -o CMakeFiles/DSA.dir/src/revision.cpp.s
 
+CMakeFiles/DSA.dir/src/stack.cpp.o: CMakeFiles/DSA.dir/flags.make
+CMakeFiles/DSA.dir/src/stack.cpp.o: /home/guichina/dev/DSA/src/stack.cpp
+CMakeFiles/DSA.dir/src/stack.cpp.o: CMakeFiles/DSA.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/guichina/dev/DSA/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/DSA.dir/src/stack.cpp.o"
+	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DSA.dir/src/stack.cpp.o -MF CMakeFiles/DSA.dir/src/stack.cpp.o.d -o CMakeFiles/DSA.dir/src/stack.cpp.o -c /home/guichina/dev/DSA/src/stack.cpp
+
+CMakeFiles/DSA.dir/src/stack.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/DSA.dir/src/stack.cpp.i"
+	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/guichina/dev/DSA/src/stack.cpp > CMakeFiles/DSA.dir/src/stack.cpp.i
+
+CMakeFiles/DSA.dir/src/stack.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/DSA.dir/src/stack.cpp.s"
+	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/guichina/dev/DSA/src/stack.cpp -o CMakeFiles/DSA.dir/src/stack.cpp.s
+
 CMakeFiles/DSA.dir/src/strings.cpp.o: CMakeFiles/DSA.dir/flags.make
 CMakeFiles/DSA.dir/src/strings.cpp.o: /home/guichina/dev/DSA/src/strings.cpp
 CMakeFiles/DSA.dir/src/strings.cpp.o: CMakeFiles/DSA.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/guichina/dev/DSA/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/DSA.dir/src/strings.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/guichina/dev/DSA/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/DSA.dir/src/strings.cpp.o"
 	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DSA.dir/src/strings.cpp.o -MF CMakeFiles/DSA.dir/src/strings.cpp.o.d -o CMakeFiles/DSA.dir/src/strings.cpp.o -c /home/guichina/dev/DSA/src/strings.cpp
 
 CMakeFiles/DSA.dir/src/strings.cpp.i: cmake_force
@@ -188,11 +216,13 @@ CMakeFiles/DSA.dir/src/strings.cpp.s: cmake_force
 DSA_OBJECTS = \
 "CMakeFiles/DSA.dir/src/arrays.cpp.o" \
 "CMakeFiles/DSA.dir/src/arrays_adt.cpp.o" \
+"CMakeFiles/DSA.dir/src/heap.cpp.o" \
 "CMakeFiles/DSA.dir/src/linked_list.cpp.o" \
 "CMakeFiles/DSA.dir/src/main.cpp.o" \
 "CMakeFiles/DSA.dir/src/queue.cpp.o" \
 "CMakeFiles/DSA.dir/src/recursion.cpp.o" \
 "CMakeFiles/DSA.dir/src/revision.cpp.o" \
+"CMakeFiles/DSA.dir/src/stack.cpp.o" \
 "CMakeFiles/DSA.dir/src/strings.cpp.o"
 
 # External object files for target DSA
@@ -200,16 +230,18 @@ DSA_EXTERNAL_OBJECTS =
 
 DSA: CMakeFiles/DSA.dir/src/arrays.cpp.o
 DSA: CMakeFiles/DSA.dir/src/arrays_adt.cpp.o
+DSA: CMakeFiles/DSA.dir/src/heap.cpp.o
 DSA: CMakeFiles/DSA.dir/src/linked_list.cpp.o
 DSA: CMakeFiles/DSA.dir/src/main.cpp.o
 DSA: CMakeFiles/DSA.dir/src/queue.cpp.o
 DSA: CMakeFiles/DSA.dir/src/recursion.cpp.o
 DSA: CMakeFiles/DSA.dir/src/revision.cpp.o
+DSA: CMakeFiles/DSA.dir/src/stack.cpp.o
 DSA: CMakeFiles/DSA.dir/src/strings.cpp.o
 DSA: CMakeFiles/DSA.dir/build.make
 DSA: CMakeFiles/DSA.dir/compiler_depend.ts
 DSA: CMakeFiles/DSA.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/guichina/dev/DSA/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable DSA"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/guichina/dev/DSA/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable DSA"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/DSA.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

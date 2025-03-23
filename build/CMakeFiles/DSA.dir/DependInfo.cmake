@@ -10,11 +10,13 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/guichina/dev/DSA/src/arrays.cpp" "CMakeFiles/DSA.dir/src/arrays.cpp.o" "gcc" "CMakeFiles/DSA.dir/src/arrays.cpp.o.d"
   "/home/guichina/dev/DSA/src/arrays_adt.cpp" "CMakeFiles/DSA.dir/src/arrays_adt.cpp.o" "gcc" "CMakeFiles/DSA.dir/src/arrays_adt.cpp.o.d"
+  "/home/guichina/dev/DSA/src/heap.cpp" "CMakeFiles/DSA.dir/src/heap.cpp.o" "gcc" "CMakeFiles/DSA.dir/src/heap.cpp.o.d"
   "/home/guichina/dev/DSA/src/linked_list.cpp" "CMakeFiles/DSA.dir/src/linked_list.cpp.o" "gcc" "CMakeFiles/DSA.dir/src/linked_list.cpp.o.d"
   "/home/guichina/dev/DSA/src/main.cpp" "CMakeFiles/DSA.dir/src/main.cpp.o" "gcc" "CMakeFiles/DSA.dir/src/main.cpp.o.d"
   "/home/guichina/dev/DSA/src/queue.cpp" "CMakeFiles/DSA.dir/src/queue.cpp.o" "gcc" "CMakeFiles/DSA.dir/src/queue.cpp.o.d"
   "/home/guichina/dev/DSA/src/recursion.cpp" "CMakeFiles/DSA.dir/src/recursion.cpp.o" "gcc" "CMakeFiles/DSA.dir/src/recursion.cpp.o.d"
   "/home/guichina/dev/DSA/src/revision.cpp" "CMakeFiles/DSA.dir/src/revision.cpp.o" "gcc" "CMakeFiles/DSA.dir/src/revision.cpp.o.d"
+  "/home/guichina/dev/DSA/src/stack.cpp" "CMakeFiles/DSA.dir/src/stack.cpp.o" "gcc" "CMakeFiles/DSA.dir/src/stack.cpp.o.d"
   "/home/guichina/dev/DSA/src/strings.cpp" "CMakeFiles/DSA.dir/src/strings.cpp.o" "gcc" "CMakeFiles/DSA.dir/src/strings.cpp.o.d"
   "" "DSA" "gcc" "CMakeFiles/DSA.dir/link.d"
   )
