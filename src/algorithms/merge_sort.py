@@ -1,10 +1,11 @@
 from typing import List
 
+# merge algorithm
 def merge(left_arr: List[int], right_arr: List[int]):
   left_len = len(left_arr)
   right_len = len(right_arr)
   arr = []
-  i = l = r = 0
+  l = r = 0
 
   while(l < left_len and r < right_len):
     if(left_arr[l] < right_arr[r]):
@@ -31,8 +32,12 @@ def merge_sort(elements: List[int]):
     return elements
 
   middle_idx = len(elements) // 2
+
+  # divides the left array until it becomes 0 or 1 size
   left_arr = merge_sort(elements[:middle_idx])
+  # divides the right array until it becomes 0 or 1 size
   right_arr = merge_sort(elements[middle_idx:])
+  # merge the right and left arr, and forms a ordered array
   return merge(left_arr, right_arr)
 
 elements = [1, 0, -10, 8, 5, 7, 15, 2]
