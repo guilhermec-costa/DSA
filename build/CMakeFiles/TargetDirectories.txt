@@ -1,4 +1,0 @@
-/home/guichina/dev/DSA/build/CMakeFiles/DSA.dir
-/home/guichina/dev/DSA/build/CMakeFiles/DSA_debug.dir
-/home/guichina/dev/DSA/build/CMakeFiles/edit_cache.dir
-/home/guichina/dev/DSA/build/CMakeFiles/rebuild_cache.dir
