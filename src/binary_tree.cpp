@@ -42,9 +42,17 @@ namespace BinaryTrees
         return nullptr;
 
       T popped = this->stackData[this->stackTop--];
+      std::cout << "popping: " << popped->data << "\n";
       return popped;
     }
 
+    void display()
+    {
+      for (int i = 0; i < this->stackTop; i++)
+      {
+        std::cout << (this->stackData[i])->data << "\n";
+      }
+    }
     ~Stack()
     {
       delete[] this->stackData;
@@ -55,12 +63,18 @@ namespace BinaryTrees
 void binary_trees()
 {
   BinaryTrees::Stack<BinaryTreeNode<char *> *> binaryTreeStack = BinaryTrees::Stack<BinaryTreeNode<char *> *>(10);
-  BinaryTreeNode<char *> *rootNode = new BinaryTreeNode<char *>("A");
-  BinaryTreeNode<char *> *BNode = new BinaryTreeNode<char *>("B");
-  BinaryTreeNode<char *> *CNode = new BinaryTreeNode<char *>("C");
-  BinaryTreeNode<char *> *DNode = new BinaryTreeNode<char *>("D");
-  BinaryTreeNode<char *> *ENode = new BinaryTreeNode<char *>("E");
-  BinaryTreeNode<char *> *FNode = new BinaryTreeNode<char *>("F");
+  auto *rootNode = new BinaryTreeNode<char *>("A");
+  auto *BNode = new BinaryTreeNode<char *>("B");
+  auto *CNode = new BinaryTreeNode<char *>("C");
+  auto *DNode = new BinaryTreeNode<char *>("D");
+  auto *ENode = new BinaryTreeNode<char *>("E");
+  auto *FNode = new BinaryTreeNode<char *>("F");
+  rootNode->data = "Root Data";
+  BNode->data = "B data";
+  CNode->data = "C data";
+  DNode->data = "D data";
+  ENode->data = "E data";
+  FNode->data = "F data";
 
   rootNode->left = BNode;
   rootNode->right = CNode;
@@ -69,13 +83,16 @@ void binary_trees()
   CNode->right = FNode;
 
   binaryTreeStack.push(rootNode);
-  BinaryTreeNode<char *> *poppedNode = binaryTreeStack.pop();
-  printf("%c\n", poppedNode->data);
+  binaryTreeStack.push(BNode);
+  binaryTreeStack.push(CNode);
+  binaryTreeStack.push(DNode);
+  binaryTreeStack.push(ENode);
+  binaryTreeStack.push(FNode);
 
-  delete rootNode;
-  delete BNode;
-  delete CNode;
-  delete DNode;
-  delete ENode;
-  delete FNode;
+  while (!binaryTreeStack.is_empty())
+  {
+    auto curNode = binaryTreeStack.pop();
+    printf("Current Node Data: %s\n", curNode->data);
+    delete curNode;
+  }
 }
