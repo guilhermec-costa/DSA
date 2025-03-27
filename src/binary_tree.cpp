@@ -73,14 +73,10 @@ void depthFirstValues(
   {
     auto curNode = stack.pop();
     resultVector.push_back(curNode);
-    if (curNode->left)
-    {
-      stack.push(curNode->left);
-    }
     if (curNode->right)
-    {
       stack.push(curNode->right);
-    }
+    if (curNode->left)
+      stack.push(curNode->left);
   }
 };
 
@@ -89,9 +85,9 @@ void binary_trees()
   BinaryTrees::Stack<BinaryTreeNode<char *> *> binaryTreeStack = BinaryTrees::Stack<BinaryTreeNode<char *> *>(10);
   auto *DNode = new BinaryTreeNode<char *>("D Data", NULL, NULL);
   auto *FNode = new BinaryTreeNode<char *>("F Data", NULL, NULL);
-  auto *CNode = new BinaryTreeNode<char *>("C Data", FNode, NULL);
-  auto *BNode = new BinaryTreeNode<char *>("B Data", DNode, CNode);
+  auto *CNode = new BinaryTreeNode<char *>("C Data", NULL, FNode);
   auto *ENode = new BinaryTreeNode<char *>("E Data", NULL, NULL);
+  auto *BNode = new BinaryTreeNode<char *>("B Data", DNode, ENode);
   auto *rootNode = new BinaryTreeNode<char *>("Root Data", BNode, CNode);
   auto resultNodes = std::vector<BinaryTreeNode<char *> *>();
 
