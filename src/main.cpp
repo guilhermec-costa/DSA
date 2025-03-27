@@ -9,7 +9,7 @@ void strings();
 void queues();
 void stacks();
 void heaps();
-void trees();
+void binary_trees();
 
 int main()
 {
@@ -22,5 +22,5 @@ int main()
   // stacks();
   // queues();
   // heaps();
-  trees();
+  binary_trees();
 }
