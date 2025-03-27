@@ -87,25 +87,18 @@ void depthFirstValues(
 void binary_trees()
 {
   BinaryTrees::Stack<BinaryTreeNode<char *> *> binaryTreeStack = BinaryTrees::Stack<BinaryTreeNode<char *> *>(10);
-  auto *rootNode = new BinaryTreeNode<char *>("Root Data");
-  auto *BNode = new BinaryTreeNode<char *>("B Data");
-  auto *CNode = new BinaryTreeNode<char *>("C Data");
-  auto *DNode = new BinaryTreeNode<char *>("D Data");
-  auto *ENode = new BinaryTreeNode<char *>("E Data");
-  auto *FNode = new BinaryTreeNode<char *>("F Data");
-  rootNode->left = BNode;
-  rootNode->right = CNode;
-  BNode->left = DNode;
-  BNode->right = ENode;
-  CNode->right = FNode;
-
+  auto *DNode = new BinaryTreeNode<char *>("D Data", NULL, NULL);
+  auto *FNode = new BinaryTreeNode<char *>("F Data", NULL, NULL);
+  auto *CNode = new BinaryTreeNode<char *>("C Data", FNode, NULL);
+  auto *BNode = new BinaryTreeNode<char *>("B Data", DNode, CNode);
+  auto *ENode = new BinaryTreeNode<char *>("E Data", NULL, NULL);
+  auto *rootNode = new BinaryTreeNode<char *>("Root Data", BNode, CNode);
   auto resultNodes = std::vector<BinaryTreeNode<char *> *>();
-  depthFirstValues<char *>(rootNode, binaryTreeStack, resultNodes);
 
+  depthFirstValues<char *>(rootNode, binaryTreeStack, resultNodes);
   for (auto v : resultNodes)
-  {
     std::cout << v->data << "\n";
-  }
+
   delete rootNode;
   delete BNode;
   delete CNode;
