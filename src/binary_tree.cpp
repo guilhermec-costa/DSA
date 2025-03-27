@@ -1,5 +1,6 @@
 #include "binary_tree.h"
 #include <iostream>
+#include <vector>
 
 namespace BinaryTrees
 {
@@ -39,60 +40,76 @@ namespace BinaryTrees
     T pop()
     {
       if (this->is_empty())
-        return nullptr;
+        throw std::out_of_range("Stack is empty");
 
       T popped = this->stackData[this->stackTop--];
-      std::cout << "popping: " << popped->data << "\n";
       return popped;
     }
 
     void display()
     {
-      for (int i = 0; i < this->stackTop; i++)
+      std::cout << this->stackTop << std::endl;
+      for (int i = 0; i <= this->stackTop; i++)
       {
         std::cout << (this->stackData[i])->data << "\n";
       }
     }
+
     ~Stack()
     {
-      delete[] this->stackData;
+      // delete[] this->stackData;
     }
   };
+};
+
+template <typename nodeDatatype>
+void depthFirstValues(
+    BinaryTreeNode<nodeDatatype> *rootNode,
+    BinaryTrees::Stack<BinaryTreeNode<nodeDatatype> *> stack,
+    std::vector<BinaryTreeNode<nodeDatatype> *> &resultVector)
+{
+  stack.push(rootNode);
+  while (!stack.is_empty())
+  {
+    auto curNode = stack.pop();
+    resultVector.push_back(curNode);
+    if (curNode->left)
+    {
+      stack.push(curNode->left);
+    }
+    if (curNode->right)
+    {
+      stack.push(curNode->right);
+    }
+  }
 };
 
 void binary_trees()
 {
   BinaryTrees::Stack<BinaryTreeNode<char *> *> binaryTreeStack = BinaryTrees::Stack<BinaryTreeNode<char *> *>(10);
-  auto *rootNode = new BinaryTreeNode<char *>("A");
-  auto *BNode = new BinaryTreeNode<char *>("B");
-  auto *CNode = new BinaryTreeNode<char *>("C");
-  auto *DNode = new BinaryTreeNode<char *>("D");
-  auto *ENode = new BinaryTreeNode<char *>("E");
-  auto *FNode = new BinaryTreeNode<char *>("F");
-  rootNode->data = "Root Data";
-  BNode->data = "B data";
-  CNode->data = "C data";
-  DNode->data = "D data";
-  ENode->data = "E data";
-  FNode->data = "F data";
-
+  auto *rootNode = new BinaryTreeNode<char *>("Root Data");
+  auto *BNode = new BinaryTreeNode<char *>("B Data");
+  auto *CNode = new BinaryTreeNode<char *>("C Data");
+  auto *DNode = new BinaryTreeNode<char *>("D Data");
+  auto *ENode = new BinaryTreeNode<char *>("E Data");
+  auto *FNode = new BinaryTreeNode<char *>("F Data");
   rootNode->left = BNode;
   rootNode->right = CNode;
   BNode->left = DNode;
   BNode->right = ENode;
   CNode->right = FNode;
 
-  binaryTreeStack.push(rootNode);
-  binaryTreeStack.push(BNode);
-  binaryTreeStack.push(CNode);
-  binaryTreeStack.push(DNode);
-  binaryTreeStack.push(ENode);
-  binaryTreeStack.push(FNode);
+  auto resultNodes = std::vector<BinaryTreeNode<char *> *>();
+  depthFirstValues<char *>(rootNode, binaryTreeStack, resultNodes);
 
-  while (!binaryTreeStack.is_empty())
+  for (auto v : resultNodes)
   {
-    auto curNode = binaryTreeStack.pop();
-    printf("Current Node Data: %s\n", curNode->data);
-    delete curNode;
+    std::cout << v->data << "\n";
   }
+  delete rootNode;
+  delete BNode;
+  delete CNode;
+  delete DNode;
+  delete ENode;
+  delete FNode;
 }
