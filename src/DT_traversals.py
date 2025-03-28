@@ -12,6 +12,33 @@ def remove_first(arr: List):
         aux.append(arr[e])
     return aux
 
+def depth_first_search_iterative(root_node: BinaryTreeNode) -> List[BinaryTreeNode]:
+    results: List[BinaryTreeNode] = []
+    if not results: results
+
+    stack: List[BinaryTreeNode] = []
+    stack.append(root_node)
+    while stack.__len__() > 0:
+        cur_node = stack.pop()
+        results.append(cur_node)
+        if(cur_node.right_node): stack.append(cur_node.right_node)
+        if(cur_node.left_node): stack.append(cur_node.left_node)
+
+    return results
+
+def depth_first_search_recursive(root_node: BinaryTreeNode) -> List[BinaryTreeNode]:
+    if not root_node:
+        return []
+
+    left_values = depth_first_search_recursive(root_node.left_node)
+    right_values = depth_first_search_recursive(root_node.right_node)
+    all = []
+    all.append(root_node)
+    all.extend(left_values)
+    all.extend(right_values)
+    return all
+
+
 def breadth_first_search(root_node: BinaryTreeNode) -> List[BinaryTreeNode]:
     results = []
     if not root_node: results
@@ -33,7 +60,15 @@ b_node = BinaryTreeNode("B Node", d_node, e_node)
 f_node = BinaryTreeNode("F Node")
 c_node = BinaryTreeNode("C Node", f_node)
 root_node = BinaryTreeNode("A Node", b_node, c_node) 
-r = breadth_first_search(root_node)
+r_BFS = breadth_first_search(root_node)
+r_DFS = depth_first_search_iterative(root_node)
+r_DFS_recursive = depth_first_search_recursive(root_node)
 
-for i in r:
+for i in r_BFS:
+    print(i.data)
+print("------------")
+for i in r_DFS:
+    print(i.data)
+print("------------")
+for i in r_DFS_recursive:
     print(i.data)
