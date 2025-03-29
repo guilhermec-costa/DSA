@@ -101,14 +101,66 @@ print(includes)
 print(includes_recursion)
 
 
+def tree_sum(root_node: BinaryTreeNode) -> int:
+    sum = 0
+    if not root_node: sum
 
+    queue: List[BinaryTreeNode] = [root_node]
+    while(queue.__len__()):
+        cur_node = queue[0]
+        queue = remove_first(queue)
+        sum += cur_node.data
+        if cur_node.left_node: queue.append(cur_node.left_node)
+        if cur_node.right_node: queue.append(cur_node.right_node)
 
+    return sum
+
+def tree_sum_recursively(root_node: BinaryTreeNode) -> int:
+    if not root_node:
+        return 0
+
+    return root_node.data + \
+        tree_sum_recursively(root_node.left_node) + \
+        tree_sum_recursively(root_node.right_node)
 
 print("------ Tree Sum ------")
 d_node = BinaryTreeNode(4)
 e_node = BinaryTreeNode(2)
 b_node = BinaryTreeNode(11, d_node, e_node)
-f_node = BinaryTreeNode(1)
+f_node = BinaryTreeNode(-26)
 c_node = BinaryTreeNode(4, f_node)
 root_node = BinaryTreeNode(3, b_node, c_node) 
 print(breadth_first_search(root_node))
+print(tree_sum(root_node))
+print(tree_sum_recursively(root_node))
+
+def tree_min_value(root_node: BinaryTreeNode) -> int:
+    min_val = root_node.data
+
+    queue: List[BinaryTreeNode] = [root_node]
+    while(queue.__len__()):
+        cur_node = queue[0]
+        queue = remove_first(queue)
+        if cur_node.data < min_val:
+            min_val = cur_node.data
+        
+        if cur_node.left_node: queue.append(cur_node.left_node)
+        if cur_node.right_node: queue.append(cur_node.right_node)
+
+    return min_val
+
+def tree_min_value_recursively(root_node: BinaryTreeNode) -> int:
+    if not root_node: return float('inf')
+
+    left_min_val = tree_min_value_recursively(root_node.left_node)
+    right_min_val = tree_min_value_recursively(root_node.right_node)
+    return min(root_node.data, left_min_val, right_min_val)
+
+node4 = BinaryTreeNode(4)
+node5 = BinaryTreeNode(2)
+node2 = BinaryTreeNode(11, d_node, e_node)
+node6 = BinaryTreeNode(1)
+node3 = BinaryTreeNode(4, f_node)
+node1= BinaryTreeNode(3, b_node, c_node) 
+print(tree_min_value(node1))
+print(tree_min_value_recursively(node1))
