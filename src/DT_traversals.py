@@ -1,4 +1,5 @@
 from typing import Any, Union, List
+import math
 
 class BinaryTreeNode:
     def __init__(self, data: Any, left_node: Union[Any, None] = None, right_node: Union[Any, None] = None):
@@ -150,11 +151,25 @@ def tree_min_value(root_node: BinaryTreeNode) -> int:
     return min_val
 
 def tree_min_value_recursively(root_node: BinaryTreeNode) -> int:
-    if not root_node: return float('inf')
+    if not root_node: return math.inf
 
     left_min_val = tree_min_value_recursively(root_node.left_node)
     right_min_val = tree_min_value_recursively(root_node.right_node)
     return min(root_node.data, left_min_val, right_min_val)
+
+# the sum of the nodes from root to all possible leaves.
+# the path with the max sum, is the response
+def max_root_to_left_path_sum(root_node: BinaryTreeNode) -> Any:
+    if not root_node: -math.inf
+    if not root_node.left_node and not root_node.right_node:
+        return root_node.data
+
+    maxChildPathSum = max(
+        max_root_to_left_path_sum(root_node.left_node),
+        max_root_to_left_path_sum(root_node.right_node)
+    )
+
+    return root_node.data + maxChildPathSum
 
 node4 = BinaryTreeNode(4)
 node5 = BinaryTreeNode(2)
@@ -164,3 +179,4 @@ node3 = BinaryTreeNode(4, f_node)
 node1= BinaryTreeNode(3, b_node, c_node) 
 print(tree_min_value(node1))
 print(tree_min_value_recursively(node1))
+print(max_root_to_left_path_sum(node1))
