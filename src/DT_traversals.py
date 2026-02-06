@@ -159,14 +159,14 @@ def tree_min_value_recursively(root_node: BinaryTreeNode) -> int:
 
 # the sum of the nodes from root to all possible leaves.
 # the path with the max sum, is the response
-def max_root_to_left_path_sum(root_node: BinaryTreeNode) -> Any:
+def max_root_to_leaf_path_sum(root_node: BinaryTreeNode) -> Any:
     if not root_node: -math.inf
     if not root_node.left_node and not root_node.right_node:
         return root_node.data
 
     maxChildPathSum = max(
-        max_root_to_left_path_sum(root_node.left_node),
-        max_root_to_left_path_sum(root_node.right_node)
+        max_root_to_leaf_path_sum(root_node.left_node),
+        max_root_to_leaf_path_sum(root_node.right_node)
     )
 
     return root_node.data + maxChildPathSum

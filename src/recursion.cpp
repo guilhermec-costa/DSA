@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 // tail recursion
 void loop(int n)
@@ -11,6 +12,41 @@ void loop(int n)
   }
 }
 
+void fn1(int n) {
+  if(n > 0) {
+    std::cout << "N on fn1: " << n << "\n";
+    fn1(n - 1);
+  }
+}
+
+int sum_of_first_n_natural_numbers(int n) {
+  if(n > 0) {
+    return n + sum_of_first_n_natural_numbers(n - 1);
+  }
+  return 0;
+};
+
+int recursion_factorial(int n) {
+  if(n > 0) {
+    return n * recursion_factorial(n - 1);
+  }
+  return 1;
+}
+
+int recursion_power(int n, int power) {
+  if(power > 0) {
+    return n * recursion_power(n, power - 1);
+  }
+  return 1;
+}
+
+int recursion_fibonacci(int n) {
+  if(n <= 1) {
+    return 1;
+  }
+  return recursion_fibonacci(n - 1) + recursion_fibonacci(n - 2);
+}
+
 // head recursion
 void loop2(int n)
 {
@@ -18,7 +54,7 @@ void loop2(int n)
   {
     loop2(n - 1);
     // executes at returning time
-    std::cout << "Element: " << n << "\n";
+    std::cout << "Element on Loop 2: " << n << "\n";
   }
 }
 
@@ -30,6 +66,16 @@ int fun(int n)
     return fun(n - 1) + n;
   }
 
+  return 0;
+}
+
+static int global_variable = 0;
+
+int increment(int n) {
+  if(n > 0) {
+    global_variable++;
+    return increment(n - 1) + global_variable + 1;
+  }
   return 0;
 }
 
@@ -133,12 +179,6 @@ int loop_exponent(int base, int exp)
   return r;
 }
 
-// e^x = 1 + x/!1 + x^2/!2 + x^3/!3 + x^4/!4
-int taylor_series(int exp)
-{
-  int numerator, denominator = 0;
-}
-
 int store[100];
 
 int fibonacci(int n)
@@ -205,9 +245,25 @@ int loop_fibonacci(int e)
   return s;
 }
 
+void print_evens(int n) {
+  if(n >= 0) {
+    int is_even = n % 2 == 0;
+    print_evens(n - 1);
+    if(is_even) {
+      printf("Even number: %d\n", n);
+    }
+  }
+}
+
 void recursion()
 {
   int n = 3;
+  print_evens(10);
+  std::cout << "-----\n";
+  int incr_sum = increment(7);
+  std::cout << "-----" << "Incr sum: " << incr_sum << "\n";
+  std::cout << "-----\n";
+  fn1(n);
   loop(n);
   std::cout << "-----\n";
   loop2(n);
@@ -263,4 +319,12 @@ void recursion()
 
   printf("%d\n", recursive_fact(5));
   printf("loop fib: %d", loop_fibonacci(5));
+  printf("-------------\n");
+  printf("sum of n natural numbers: %d\n", sum_of_first_n_natural_numbers(7));
+  printf("-------------\n");
+
+  printf("recursion factorial: %d\n", recursion_factorial(5));
+  printf("-------------\n");
+  printf("recursion power: %d\n", recursion_power(2, 5));
+  printf("-------------\n");
 }

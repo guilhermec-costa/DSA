@@ -15,12 +15,12 @@ int main()
 {
   // revisions();
   // recursion();
-  // arrays();
+  arrays();
   // arrays_adt();
   // strings();
   // linked_lists();
   // stacks();
   // queues();
   // heaps();
-  binary_trees();
+  // binary_trees();
 }
