@@ -1,4 +1,5 @@
 #include <iostream>
+#include "./arrays_adt2.hpp"
 
 void revisions();
 void recursion();
@@ -15,8 +16,9 @@ int main()
 {
   // revisions();
   // recursion();
-  arrays();
+  // arrays();
   // arrays_adt();
+  arrays_adt2();
   // strings();
   // linked_lists();
   // stacks();

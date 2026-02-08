@@ -1,3 +1,4 @@
+#include <cstring>
 #include <iostream>
 #include <vector>
 #include <bitset>
@@ -272,4 +273,16 @@ bool is_palindrome(char *s)
   }
 
   return false;
+
+  char name[] = "Guilherme\0";
+  char* p1 = name;
+  char *p2 = name + strlen(name) - 1;
+
+  while(p1 < p2) {
+    char tmp = *p1;
+    *p1 = *p2;
+    *p2 = tmp;
+    p1++; p2--;
+  }
+  std::cout << "New string: " << name << "\n";
 }
