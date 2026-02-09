@@ -1,13 +1,14 @@
 #include <iostream>
+#include <optional>
 
-class MyArrayADT {
+class ArrayClass {
 public:
-  MyArrayADT(int size) : _size(size) {
+  ArrayClass(int size) : _size(size) {
     arr = new int[size]{0};
     std::cout << "Array with size " << size << " created\n";
   }
 
-  ~MyArrayADT() {
+  ~ArrayClass() {
     delete[] arr;
     std::cout << "Array with size " << _size << " deleted\n";
   }
@@ -35,7 +36,7 @@ public:
   // O(1)
   void append(int element) {
     if (_len == _size) {
-      increase();
+      increase({});
     }
     arr[_len++] = element;
   }
@@ -48,7 +49,7 @@ public:
       return;
     }
     if (_len == _size) {
-      increase();
+      increase({});
     }
     // _len is the next free space
     for (int i = _len; i > idx; i--) {
@@ -82,6 +83,26 @@ public:
         return i;
       }
     }
+    return -1;
+  }
+
+  static int binary_search(ArrayClass &_arr, int key) {
+    int low_idx = 0;
+    int high_idx = _arr._len - 1;
+
+    while (low_idx <= high_idx) {
+      int mid_idx = (high_idx + low_idx) / 2;
+      int mid_ele = _arr.at(mid_idx);
+
+      if (mid_ele == key)
+        return mid_idx;
+      if (mid_ele > key) {
+        high_idx = mid_idx - 1;
+      } else {
+        low_idx = mid_idx + 1;
+      }
+    }
+
     return -1;
   }
 
@@ -235,11 +256,130 @@ public:
     if (_len == 0)
       return;
 
-    const int last = arr[_len-1];
+    const int last = arr[_len - 1];
     for (int i = _len - 1; i > 0; i--) {
       arr[i] = arr[i - 1];
     }
     arr[0] = last;
+  }
+
+  bool is_sorted() {
+    for (int i = 0; i < _len - 1; i++) {
+      if (arr[i] > arr[i + 1])
+        return false;
+    }
+    return true;
+  }
+
+  void arrange_negatives_on_left() {
+    int *p1 = arr;
+    int *p2 = &arr[_len - 1];
+    while (p1 < p2) {
+      if (*p1 < 0) {
+        p1++;
+      } else if (*p2 >= 0) {
+        p2--;
+      } else {
+        int tmp = *p1;
+        *p1 = *p2;
+        *p2 = tmp;
+        p1++;
+        p2--;
+      }
+    }
+  }
+
+  void extend(ArrayClass &arr2) {
+    if (_size < _len + arr2._len) {
+      increase(_len + arr2._len);
+    }
+    for (int j = 0; j < arr2._len; j++) {
+      arr[j + _len] = arr2.at(j);
+    }
+    _len += arr2.length();
+  }
+
+  // theta (m+n)
+  // combine twos arrays preserving sorting state
+  ArrayClass merge(ArrayClass &arr2) {
+    ArrayClass merged(_len + arr2._len);
+    int m = 0, n = 0;
+
+    while (m < _len && n < arr2._len) {
+      if (arr[m] < arr2.at(n)) {
+        merged.append(arr[m++]);
+      } else {
+        merged.append(arr2.at(n++));
+      }
+    }
+
+    for (; m < _len;) {
+      merged.append(arr[m++]);
+    }
+
+    for (; n < arr2._len;) {
+      merged.append(arr2.at(n++));
+    }
+
+    return merged;
+  }
+
+  bool contains(ArrayClass &a, int value) {
+    for (int i = 0; i < a.length(); i++) {
+      if (a.at(i) == value)
+        return true;
+    }
+    return false;
+  }
+
+  ArrayClass union_non_sorted(ArrayClass &arr2) {
+    ArrayClass result(_len + arr2._len);
+    for (int i = 0; i < _len; i++) {
+      if (!contains(result, arr[i])) {
+        result.append(arr[i]);
+      }
+    }
+
+    for (int i = 0; i < arr2._len; i++) {
+      if (!contains(result, arr2.at(i))) {
+        result.append(arr2.at(i));
+      }
+    }
+
+    return result;
+  }
+
+  static ArrayClass union_sorted(ArrayClass &arr1, ArrayClass &arr2) {
+    ArrayClass result(arr1.length() + arr2.length());
+    int m = 0, n = 0;
+
+    while (m < arr1.length() && n < arr2.length()) {
+      if (arr1.at(m) < arr2.at(n)) {
+        result.append(arr1.at(m++));
+      } else if (arr2.at(n) < arr1.at(m)) {
+        result.append(arr2.at(n++));
+      } else {
+        result.append(arr1.at(m++));
+        n++;
+      }
+    }
+
+    for (; m < arr1.length();)
+      result.append(arr1.at(m++));
+
+    for (; n < arr2.length();)
+      result.append(arr2.at(n++));
+
+    return result;
+  }
+
+  ArrayClass *concat(ArrayClass &arr2) {
+    ArrayClass *new_array = new ArrayClass(_len + arr2._len);
+    for (int i = 0; i < _len; i++)
+      new_array->append(arr[i]);
+    for (int i = 0; i < arr2._len; i++)
+      new_array->append(arr2.at(i));
+    return new_array;
   }
 
 private:
@@ -247,8 +387,8 @@ private:
   int _size = 0;
   int _len = 0;
 
-  void increase() {
-    int new_size = size() * 2;
+  void increase(std::optional<int> _s) {
+    int new_size = _s.value_or(size() * 2);
     int *new_arr = new int[new_size]{0};
     for (int i = 0; i < length(); i++) {
       new_arr[i] = arr[i];
@@ -261,7 +401,7 @@ private:
 };
 
 void arrays_adt2() {
-  MyArrayADT array = MyArrayADT(10);
+  ArrayClass array = ArrayClass(10);
   std::cout << "Size of the array: " << array.size() << "\n";
   array.append(5);
   array.append(10);
@@ -281,7 +421,7 @@ void arrays_adt2() {
   std::cout << "----------\n";
   std::cout << "Testing binary search\n";
 
-  MyArrayADT array2 = MyArrayADT(10);
+  ArrayClass array2 = ArrayClass(10);
   array2.append(100);
   array2.append(150);
   array2.append(200);
@@ -312,7 +452,7 @@ void arrays_adt2() {
   array2.left_shift();
   array2.display();
 
-  MyArrayADT array3 = MyArrayADT(10);
+  ArrayClass array3 = ArrayClass(10);
   array3.append(7);
   array3.append(14);
   array3.append(21);
@@ -322,7 +462,7 @@ void arrays_adt2() {
   array3.right_shift();
   array3.display();
   std::cout << "----------\n";
-  MyArrayADT array4 = MyArrayADT(10);
+  ArrayClass array4 = ArrayClass(10);
   array4.append(1);
   array4.append(2);
   array4.append(3);
@@ -331,4 +471,87 @@ void arrays_adt2() {
   array4.right_rotate();
   std::cout << "After right rotate \n";
   array4.display();
+  std::cout << "Is array4 sorted: " << array4.is_sorted() << "\n";
+  std::cout << "----------\n";
+  array4.right_rotate();
+  array4.right_rotate();
+  array4.display();
+  std::cout << "Is array4 sorted after rotations: " << array4.is_sorted()
+            << "\n";
+
+  std::cout << "----------\n";
+  ArrayClass array5 = ArrayClass(10);
+  array5.append(1);
+  array5.append(2);
+  array5.append(-1);
+  array5.append(-3);
+  array5.append(-2);
+  array5.append(3);
+  array5.append(4);
+  array5.append(-4);
+  array5.display();
+  std::cout << "----------\n";
+  std::cout << "Rearreging negative\n";
+  array5.arrange_negatives_on_left();
+  array5.display();
+  std::cout << "----------\n";
+  ArrayClass array6 = ArrayClass(5);
+  ArrayClass array7 = ArrayClass(5);
+  std::cout << "----------\n";
+  array6.append(1);
+  array6.append(2);
+  array6.append(3);
+  array7.append(-1);
+  array7.append(-2);
+  array7.append(-3);
+  array6.extend(array7);
+  std::cout << "After merge\n";
+  array6.display();
+  std::cout << "After arrange\n";
+  array6.arrange_negatives_on_left();
+  array6.display();
+
+  ArrayClass *concatenated = array6.concat(array7);
+  std::cout << "----------\n";
+  std::cout << "After concat\n";
+  concatenated->display();
+
+  ArrayClass merged1 = ArrayClass(3);
+  merged1.append(1);
+  merged1.append(3);
+  merged1.append(5);
+  ArrayClass merged2 = ArrayClass(3);
+  merged2.append(2);
+  merged2.append(3);
+  merged2.append(4);
+  merged2.append(6);
+  merged2.append(6);
+  merged2.append(7);
+  ArrayClass merged = merged1.merge(merged2);
+  std::cout << "----------\n";
+  std::cout << "After merge\n";
+  merged.display();
+  std::cout << "----------\n";
+  std::cout << "After union non sorted\n";
+  auto unified = merged.union_non_sorted(merged);
+  unified.display();
+  std::cout << "----------\n";
+
+  ArrayClass list1(3);
+  ArrayClass list2(3);
+
+  list1.append(-1);
+  list1.append(-2);
+  list1.append(-3);
+  list2.append(-1);
+  list2.append(-2);
+  list2.append(-3);
+  list2.append(0);
+  list2.append(1);
+  list2.append(3);
+
+  std::cout << "----------\n";
+  std::cout << "After union sorted\n";
+  ArrayClass list3 = ArrayClass::union_sorted(list1, list2);
+  list3.display();
 }
