@@ -13,6 +13,7 @@ extern void stacks();
 extern void heaps();
 extern void binary_trees();
 extern void array_concatenation(std::vector<int> &nums);
+extern void str_score(std::string s);
 
 int main() {
   // revisions();
@@ -28,6 +29,8 @@ int main() {
   // heaps();
   // binary_trees();
 
-  std::vector<int> nums = { 1, 2, 3};
-  array_concatenation(nums);
+  // std::vector<int> nums = { 1, 2, 3};
+  // array_concatenation(nums);
+
+  // str_score("neetcode");
 }
