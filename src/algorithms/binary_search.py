@@ -146,9 +146,22 @@ def bin_search(elems: List[int], target: int):
     return None
 
 def binary_search8(vector, target):
-    low = 0;
-  
+  low = 0
+  high = len(vector) - 1
 
+  while low <= high:
+      middle_idx = (low + high) // 2
+      middle = vector[middle_idx]
+
+      if middle == target:
+        return middle_idx
+
+      if middle > target:
+        high = middle_idx - 1
+      else:
+        low = middle_idx + 1
+
+  return None
 
 lst = [1, 3, 5, 7, 9, 15, 20, 25]
 # print(binary_search1(lst, 5))
@@ -157,4 +170,5 @@ lst = [1, 3, 5, 7, 9, 15, 20, 25]
 # print(binary_search4(lst, 5))
 # print(binary_search5(lst, 5))
 # print(binary_search6(lst, 5))
-print(bin_search(lst, 1))
+print(bin_search(lst, 12))
+print(binary_search8(lst, 12))
