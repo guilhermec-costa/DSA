@@ -1,7 +1,10 @@
 #include "./arrays_adt2.hpp"
+#include <algorithm>
 #include <vector>
 
+struct ListNode;
 extern void revisions();
+
 extern void recursion();
 extern void arrays();
 extern void arrays_adt();
@@ -14,6 +17,10 @@ extern void heaps();
 extern void binary_trees();
 extern void array_concatenation(std::vector<int> &nums);
 extern void str_score(std::string s);
+extern void reverse_string(std::vector<char> &s);
+extern int binary_search(std::vector<int>& nums, int target);
+extern int remove_element(std::vector<int>& nums, int val);
+extern ListNode* mergeTwoLL(ListNode* list1, ListNode* list2);
 
 int main() {
   // revisions();
@@ -23,7 +30,7 @@ int main() {
   // arrays_adt2();
   // strings();
   // linked_lists();
-  // linked_list_revision();
+  linked_list_revision();
   // stacks();
   // queues();
   // heaps();
@@ -33,4 +40,13 @@ int main() {
   // array_concatenation(nums);
 
   // str_score("neetcode");
+  // std::vector<char> str = {'h', 'e', 'l', 'l', 'o'};
+  // std::cout << "Before reversing: " << "\n";
+  // std::for_each(str.begin(), str.end(), [](char c) { std::cout << c; });
+  // reverse_string(str);
+  // std::cout << "\n";
+  // std::cout << "After reversing: " << "\n";
+  // std::for_each(str.begin(), str.end(), [](char c) { std::cout << c; });
+
+  // std::cout << "\n";
 }

@@ -1,3 +1,4 @@
+#include "../include/linked_list.h"
 #include <iostream>
 
 typedef struct Node Node;
@@ -149,6 +150,22 @@ Node *make_LL_from_arr(int *arr, int len) {
   return head;
 }
 
+ListNode *make_LL_from_arr_lst_node(int *arr, int len) {
+  if (len <= 0)
+    return nullptr;
+
+  ListNode *head = new ListNode(0, nullptr);
+  ListNode *curr = head;
+
+  for (int i = 1; i < len; i++) {
+    ListNode *n = new ListNode(arr[i]);
+    curr->next = n;
+    curr = n;
+  }
+
+  return head;
+}
+
 void linked_list_revision() {
   std::cout << "--------\n";
   Node *head = new Node;
@@ -206,6 +223,20 @@ void linked_list_revision() {
   std::cout << "After reverse \n";
   display_linked_list(ll_to_rev);
 
+  std::cout << "Mergint linked list\n";
+
+  int to_merge[] = {1,2,3,4};
+  ListNode* list1 = make_LL_from_arr_lst_node(to_merge, 4);
+  ListNode* list2 = make_LL_from_arr_lst_node(to_merge, 4);
+  ListNode* merged = mergeTwoLL(list1, list2);
+
+  ListNode* curr = merged;
+  while(curr) {
+    std::cout << "Display: " << curr->val << "\n";
+    curr = curr->next;
+  }
+
+  std::cout << "------\n";
   delete head;
   delete second;
   delete third;
