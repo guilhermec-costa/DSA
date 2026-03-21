@@ -24,6 +24,8 @@ extern ListNode* mergeTwoLL(ListNode* list1, ListNode* list2);
 extern int majority_element(std::vector<int>& nums);
 extern bool is_valid_palindrome(std::string s);
 extern void remove_spaces(std::string s);
+extern bool valid_palindrome_v2(std::string s);
+extern std::string merge_alternately(std::string word1, std::string word2);
 
 int main() {
   // revisions();
@@ -59,4 +61,9 @@ int main() {
   std::cout << "Is Valid palindrome: " << is_valid_palindrome(word) << "\n";
 
   remove_spaces("hello world again");
+
+  std::cout << "Is valid palindrome: " << valid_palindrome_v2("hello") << "\n";
+
+  std::string merged = merge_alternately("hello", "world");
+  std::cout << "Merged: " << merged << "\n";
 }

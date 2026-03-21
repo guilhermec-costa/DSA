@@ -1,5 +1,5 @@
 #include <iostream>
-#include "arrays_adt.h"
+#include "../../include/arrays_adt.h"
 
 ArrayADT::ArrayADT(int size)
 {
