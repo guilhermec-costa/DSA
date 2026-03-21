@@ -21,6 +21,9 @@ extern void reverse_string(std::vector<char> &s);
 extern int binary_search(std::vector<int>& nums, int target);
 extern int remove_element(std::vector<int>& nums, int val);
 extern ListNode* mergeTwoLL(ListNode* list1, ListNode* list2);
+extern int majority_element(std::vector<int>& nums);
+extern bool is_valid_palindrome(std::string s);
+extern void remove_spaces(std::string s);
 
 int main() {
   // revisions();
@@ -30,7 +33,7 @@ int main() {
   // arrays_adt2();
   // strings();
   // linked_lists();
-  linked_list_revision();
+  // linked_list_revision();
   // stacks();
   // queues();
   // heaps();
@@ -48,5 +51,12 @@ int main() {
   // std::cout << "After reversing: " << "\n";
   // std::for_each(str.begin(), str.end(), [](char c) { std::cout << c; });
 
-  // std::cout << "\n";
+  // std::vector<int> nums = { 1, 2, 3, 3};
+  // std::cout << "Majority element: \n" << majority_element(nums);
+
+  std::string word = "Was it a car or a cat I saw?";
+  std::string word2 = "tab a cat";
+  std::cout << "Is Valid palindrome: " << is_valid_palindrome(word) << "\n";
+
+  remove_spaces("hello world again");
 }
