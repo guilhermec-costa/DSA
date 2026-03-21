@@ -1,4 +1,4 @@
-#include "queue.h"
+#include "../include/queue.h"
 #include <iostream>
 
 void Queue::enqueue(int e)

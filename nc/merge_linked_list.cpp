@@ -1,4 +1,4 @@
-#include "../../include/linked_list.h"
+#include "../include/linked_list.h"
 
 ListNode* mergeTwoLL(ListNode* list1, ListNode* list2) {
   ListNode* dummy = new ListNode(0);

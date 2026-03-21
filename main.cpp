@@ -1,5 +1,4 @@
-#include "./arrays_adt2.hpp"
-#include <algorithm>
+#include "./fundamentals/arrays_adt2.hpp"
 #include <vector>
 
 struct ListNode;
