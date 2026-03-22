@@ -25,6 +25,7 @@ extern bool is_valid_palindrome(std::string s);
 extern void remove_spaces(std::string s);
 extern bool valid_palindrome_v2(std::string s);
 extern std::string merge_alternately(std::string word1, std::string word2);
+extern void hash_main();
 
 int main() {
   // revisions();
@@ -55,14 +56,15 @@ int main() {
   // std::vector<int> nums = { 1, 2, 3, 3};
   // std::cout << "Majority element: \n" << majority_element(nums);
 
-  std::string word = "Was it a car or a cat I saw?";
-  std::string word2 = "tab a cat";
-  std::cout << "Is Valid palindrome: " << is_valid_palindrome(word) << "\n";
+  // std::string word = "Was it a car or a cat I saw?";
+  // std::string word2 = "tab a cat";
+  // std::cout << "Is Valid palindrome: " << is_valid_palindrome(word) << "\n";
 
-  remove_spaces("hello world again");
+  // remove_spaces("hello world again");
 
-  std::cout << "Is valid palindrome: " << valid_palindrome_v2("hello") << "\n";
+  // std::cout << "Is valid palindrome: " << valid_palindrome_v2("hello") << "\n";
 
-  std::string merged = merge_alternately("hello", "world");
-  std::cout << "Merged: " << merged << "\n";
+  // std::string merged = merge_alternately("hello", "world");
+  // std::cout << "Merged: " << merged << "\n";
+  hash_main();
 }
