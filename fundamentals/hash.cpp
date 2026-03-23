@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <iostream>
 
 // a hash function returns the target/mapped index in the hashtable
@@ -63,12 +64,52 @@ particular use case, he/she needs to have an ideia about the nature of the keys
 
 */
 
+int hash(int key) { return key % 10; };
+
+void sorted_insert(ListNode **H, int key) {
+  ListNode *t, *q = NULL, *p = *H;
+  t = new ListNode{NULL, key};
+
+  if (!*H) {
+    *H = t;
+  } else {
+    while (p && p->data < key) {
+      q = p;
+      p = p->next;
+    }
+
+    if(q == NULL) {
+      t->next = *H;
+      *H = t;
+    } else {
+      t->next = p;
+      q->next = t;
+    }
+  }
+}
+
+void insert(ListNode *ht[], int key) {
+  const int idx = hash(key);
+  std::cout << "idx: " << idx << "\n";
+  sorted_insert(&ht[idx], key);
+}
+
 void chaining() {
   // each value is mapped to an index on the hashtable, but, instead of storing
   // the element directly on that index, it is created a node on the heap. So a
   // linked list is used to "chain" the collisions in sorted order
   // the index returned by the hash function is just the head pointer (pointer
   // to the first node on the heap)
+
+  constexpr int len = 10;
+  struct ListNode *ht[len] = {};
+  for (int i = 0; i < len; i++) {
+    ht[i] = nullptr;
+  }
+
+  insert(ht, 12);
+  insert(ht, 22);
+  std::cout << "Node test: " << ht[2]->data << "\n";
 }
 
 void hash_main() {
@@ -94,4 +135,6 @@ void hash_main() {
   // relation mappings
   // one - one -> function mapping = every key is mapped to one index in the
   // hashtable one - many many - one -> function mapping many - many
+
+  chaining();
 }
