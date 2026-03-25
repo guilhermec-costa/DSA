@@ -1,4 +1,4 @@
-#include <algorithm>
+#include <cstdio>
 #include <iostream>
 
 // a hash function returns the target/mapped index in the hashtable
@@ -18,7 +18,8 @@ deterministic output, with minimal or 0 collisions
 
 
 methods to avoid collision:
--> closed hashing: it does not increase the space of the hashtable
+-> closed hashing (open addressing): it does not increase the space of the
+hashtable
   -> linear probing
   -> quadratic probing
   -> double hashing
@@ -78,7 +79,7 @@ void sorted_insert(ListNode **H, int key) {
       p = p->next;
     }
 
-    if(q == NULL) {
+    if (q == NULL) {
       t->next = *H;
       *H = t;
     } else {
@@ -94,7 +95,22 @@ void insert(ListNode *ht[], int key) {
   sorted_insert(&ht[idx], key);
 }
 
-void chaining() {
+static ListNode *search(ListNode *const H, int key) {
+  if (!H)
+    return NULL;
+
+  ListNode *p = H;
+  while (p) {
+    if (p->data == key)
+      return p;
+    p = p->next;
+  }
+
+  return NULL;
+}
+
+// open hashing
+static void chaining() {
   // each value is mapped to an index on the hashtable, but, instead of storing
   // the element directly on that index, it is created a node on the heap. So a
   // linked list is used to "chain" the collisions in sorted order
@@ -109,7 +125,114 @@ void chaining() {
 
   insert(ht, 12);
   insert(ht, 22);
-  std::cout << "Node test: " << ht[2]->data << "\n";
+
+  const ListNode *const n = search(ht[hash(22)], 22);
+
+  if (n) {
+    std::cout << "Node result: " << n->data << "\n";
+  }
+}
+
+static int LP_hash(int key) { return key % 10; }
+
+// closed hashing ( open addressing)
+/*
+  represented by: h'(x) = (h(x) + f(i)) % n
+  where f(i) = i, i being = 0, 1, 2, ...
+  and n is the length of the hashtable.
+  h(x) always gets the "original" index. The f(i) increments i places from the
+  original index.
+  if (original index + i) is equal to n, then it restart the
+  search from the start
+
+  original index, and this search is circular via the mod operator
+
+  this hash function runs until it gets a free space on the hashtable.
+  each time it runs, i increments by one. And it is a circular function,
+  so once it reaches the end of the array, it starts from the start again
+*/
+
+/*
+  loading factor is always less then one on linear probing, because the
+  hashtable has to have an empty space so the search algorithm works
+    this loading factor should always be less than or equal to 0.5
+    what means that the hashtable should always have half of it empty
+    e.g: 10 keys, hashtable can only have 5 keys stored
+    e.g: 20 keys, hashtable can only jave 10 keys stored
+
+    avg successful search:
+    t = 1/LF * ln(1/1-LF)
+
+    avg unsuccessful search:
+    t = 1/(1-LF)
+
+
+    drawbacks:
+    - space is wasted, because half of the hashtable must be vacant
+    - keys can accumulate at one place, and this forms a cluster. This is called
+  primary clustering. The bigger the cluster, the longer to find an element avg
+  successful search considering primary clustering: 1/2 * (1+ 1/1-LF) avg
+  unsuccessful search considering primary clustering: 1/1-LF
+
+    delete:
+      - for deletion, you should apply the hash function until found the key,
+        then delete it, and then do a REHASHING. Shift the remaning keys is too
+        complicated, it would need lots of verifications to check if some key
+  would have to go after or before etc. so the idea of rehashing is to REINSERT
+  in a new hashtable. So in linear probing deletion "does not exist". It is just
+  not recommended, too time consuming
+
+*/
+
+#define SIZE 10
+
+static int hash_LP(int key) { return key % 10; }
+
+static int probe(int H[], int key) {
+  int index = hash_LP(key);
+  int i = 0;
+  while (H[(index + i) % SIZE]) {
+    i++;
+  }
+
+  return (index + i) % SIZE;
+}
+
+static void insert_LP(int H[], int key) {
+  int index = hash_LP(key);
+  if (H[index]) {
+    index = probe(H, key);
+  }
+
+  H[index] = key;
+}
+
+static int search_LP(int H[], int key) {
+  int index = hash_LP(key);
+  for (int i = 0; i < SIZE; i++) {
+    int probedIdx = (index + i) % SIZE;
+    if (H[probedIdx] == key)
+      return probedIdx;
+    if (!H[probedIdx])
+      return -1;
+  }
+
+  // in case the hashtable is full
+  return -1;
+}
+
+static void linear_probing() {
+  int HT[SIZE] = {0};
+  insert_LP(HT, 12);
+  insert_LP(HT, 25);
+  insert_LP(HT, 35);
+  insert_LP(HT, 26);
+
+  for (int i = 0; i < SIZE; i++) {
+    printf("Index %d: %d\n", i, HT[i]);
+  }
+
+  printf("Position of 35: %d\n", search_LP(HT, 35));
 }
 
 void hash_main() {
@@ -137,4 +260,6 @@ void hash_main() {
   // hashtable one - many many - one -> function mapping many - many
 
   chaining();
+  printf("Linear probing\n");
+  linear_probing();
 }

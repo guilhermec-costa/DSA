@@ -4,8 +4,8 @@ build-debug:
 build-release:
 	cmake -S . -B ./build -DCMAKE_BUILD_TYPE=Release
 
-compile:
+compile-and-link:
 	cmake --build ./build
 
-run: compile
+run: compile-and-link
 	./build/DSA

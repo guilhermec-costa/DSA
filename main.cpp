@@ -17,15 +17,16 @@ extern void binary_trees();
 extern void array_concatenation(std::vector<int> &nums);
 extern void str_score(std::string s);
 extern void reverse_string(std::vector<char> &s);
-extern int binary_search(std::vector<int>& nums, int target);
-extern int remove_element(std::vector<int>& nums, int val);
-extern ListNode* mergeTwoLL(ListNode* list1, ListNode* list2);
-extern int majority_element(std::vector<int>& nums);
+extern int binary_search(std::vector<int> &nums, int target);
+extern int remove_element(std::vector<int> &nums, int val);
+extern ListNode *mergeTwoLL(ListNode *list1, ListNode *list2);
+extern int majority_element(std::vector<int> &nums);
 extern bool is_valid_palindrome(std::string s);
 extern void remove_spaces(std::string s);
 extern bool valid_palindrome_v2(std::string s);
 extern std::string merge_alternately(std::string word1, std::string word2);
 extern void hash_main();
+extern int remove_duplicates(std::vector<int> &nums);
 
 int main() {
   // revisions();
@@ -62,9 +63,19 @@ int main() {
 
   // remove_spaces("hello world again");
 
-  // std::cout << "Is valid palindrome: " << valid_palindrome_v2("hello") << "\n";
+  // std::cout << "Is valid palindrome: " << valid_palindrome_v2("hello") <<
+  // "\n";
 
   // std::string merged = merge_alternately("hello", "world");
   // std::cout << "Merged: " << merged << "\n";
   hash_main();
+
+  // std::vector<int> testcase1{1, 1, 2, 3, 4};
+  // std::vector<int> testcase2{-50,-50,-49,-48,-48,-47};
+  // std::vector<int> testcase3{ 10,10,10,11,11,12};
+  // const int unique_count = remove_duplicates(testcase3);
+  // for (const int &i : testcase3) {
+  //   std::cout << "Item: " << i << "\n";
+  // }
+  // std::cout << "Unique count: " << unique_count << "\n";
 }
