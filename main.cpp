@@ -27,6 +27,7 @@ extern bool valid_palindrome_v2(std::string s);
 extern std::string merge_alternately(std::string word1, std::string word2);
 extern void hash_main();
 extern int remove_duplicates(std::vector<int> &nums);
+extern int sqrt_of_x(int x);
 
 int main() {
   // revisions();
@@ -78,4 +79,7 @@ int main() {
   //   std::cout << "Item: " << i << "\n";
   // }
   // std::cout << "Unique count: " << unique_count << "\n";
+
+  int num = 2147395600;
+  printf("Square root of %d is %d\n", num, sqrt_of_x(num));
 }

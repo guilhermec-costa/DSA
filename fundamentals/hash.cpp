@@ -1,5 +1,35 @@
 #include <cstdio>
 #include <iostream>
+#include <vector>
+
+class MyHashSet {
+
+private:
+  std::vector<int> HT;
+
+private:
+  int _hash(int key) { return key % HT.size(); }
+
+public:
+  MyHashSet() { HT.resize(1000, -1); }
+
+  void add(int key) {
+    int idx = _hash(key);
+    this->HT[idx] = key;
+  }
+
+  void remove(int key) {
+    int idx = _hash(key);
+    if (!HT[idx])
+      return;
+    this->HT[idx] = 0;
+  }
+
+  bool contains(int key) {
+    const int index = _hash(key);
+    return HT[index] == key;
+  }
+};
 
 // a hash function returns the target/mapped index in the hashtable
 
@@ -262,4 +292,9 @@ void hash_main() {
   chaining();
   printf("Linear probing\n");
   linear_probing();
+
+  auto *hashset = new MyHashSet();
+  hashset->contains(0);
+  hashset->remove(0);
+  std::cout << "Contains: " << hashset->contains(0) << "\n";
 }
