@@ -1,4 +1,8 @@
 #include "./fundamentals/arrays_adt2.hpp"
+#include "./include/stack_adt.h"
+#include <cstdlib>
+#include <cstring>
+#include <string_view>
 #include <vector>
 
 struct ListNode;
@@ -28,6 +32,24 @@ extern std::string merge_alternately(std::string word1, std::string word2);
 extern void hash_main();
 extern int remove_duplicates(std::vector<int> &nums);
 extern int sqrt_of_x(int x);
+
+bool is_balanced(std::string &expr) {
+  StackLL exprSt;
+  for (char c : expr) {
+    if (c == '(')
+      exprSt.push((int)c);
+
+    if (c == ')') {
+      const char res = exprSt.pop();
+      // only valid when there is more ")" than "("
+      if (res == -1) {
+        return false;
+      }
+    }
+  }
+
+  return exprSt.is_empty();
+}
 
 int main() {
   // revisions();
@@ -69,7 +91,7 @@ int main() {
 
   // std::string merged = merge_alternately("hello", "world");
   // std::cout << "Merged: " << merged << "\n";
-  hash_main();
+  // hash_main();
 
   // std::vector<int> testcase1{1, 1, 2, 3, 4};
   // std::vector<int> testcase2{-50,-50,-49,-48,-48,-47};
@@ -80,6 +102,46 @@ int main() {
   // }
   // std::cout << "Unique count: " << unique_count << "\n";
 
-  int num = 2147395600;
-  printf("Square root of %d is %d\n", num, sqrt_of_x(num));
+  // int num = 2147395600;
+  // printf("Square root of %d is %d\n", num, sqrt_of_x(num));
+
+  MyStackADT st(5);
+  st.push(1);
+  st.push(2);
+  st.push(10);
+  printf("Size: %d\n", st.size());
+  printf("Top: %d\n", st.stacktop());
+  int last = st.pop();
+  printf("Popped: %d\n", last);
+  printf("Top: %d\n", st.stacktop());
+  st.push(15);
+  st.push(30);
+  st.display();
+  printf("Peek of 3: %d\n", st.peek(3));
+
+  // ---------------
+  StackLL stNode;
+  stNode.push(5);
+  stNode.push(10);
+  stNode.push(15);
+  stNode.display();
+
+  printf("Peek at 1: %d\n", stNode.peek(4));
+  printf("Stacktop of node: %d\n", stNode.stacktop());
+  int valPopped = stNode.pop();
+  printf("display after pop: ");
+  stNode.display();
+  printf("Popped element: %d\n", valPopped);
+  stNode.pop();
+  stNode.display();
+  stNode.pop();
+  stNode.display();
+  stNode.pop();
+  stNode.display();
+
+  // if all parenthesis have a matching parenthesis, than the expression is
+  // correct
+  std::string expr = "((a+b)*(c-d))";
+  printf("\n--------");
+  printf("\nIs %s balanced? %b\n", expr.c_str(), is_balanced(expr));
 }

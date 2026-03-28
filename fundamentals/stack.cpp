@@ -1,34 +1,24 @@
+#include "../include/stack_adt.h"
+#include <cstdio>
 #include <iostream>
-#include "stack_adt.h"
 
-Stack::Stack(int size)
-{
+Stack::Stack(int size) {
   this->size = size;
   this->stack = new int[size]{0};
   this->top = -1;
 }
 
-Stack::~Stack()
-{
-  delete this->stack;
-}
+Stack::~Stack() { delete this->stack; }
 
 // if defined directly inside the class, it will be inline automatically
-inline bool Stack::is_empty()
-{
-  return this->top == -1;
-}
+inline bool Stack::is_empty() { return this->top == -1; }
 
-inline bool Stack::is_full()
-{
-  return this->top == size - 1;
-}
+inline bool Stack::is_full() { return this->top == size - 1; }
 
-void Stack::push(int x)
-{
-  if (is_full())
-  {
-    std::cout << "would overflow stack adding \"" << x << "\" to it" << std::endl;
+void Stack::push(int x) {
+  if (is_full()) {
+    std::cout << "would overflow stack adding \"" << x << "\" to it"
+              << std::endl;
     return;
     int new_size = this->size + 5;
     int *new_stack = new int[new_size]{0};
@@ -41,10 +31,8 @@ void Stack::push(int x)
   this->stack[++top] = x;
 }
 
-int Stack::pop()
-{
-  if (is_empty())
-  {
+int Stack::pop() {
+  if (is_empty()) {
     std::cout << "would underflow stack.\n";
     return NULL;
   }
@@ -53,10 +41,8 @@ int Stack::pop()
 
 // inverse of an array. The access to the stack items are from top to bottom
 // so it is needed to access it in the position (TOP - PEEK_INDEX)
-int Stack::peek(int pos)
-{
-  if (top - pos + 1 < 0)
-  {
+int Stack::peek(int pos) {
+  if (top - pos + 1 < 0) {
     std::cout << "\"" << pos << "\" is out of range of the stack\n";
     return -1;
   }
@@ -64,23 +50,19 @@ int Stack::peek(int pos)
   return this->stack[top - pos + 1];
 }
 
-void Stack::view()
-{
-  for (int i = 0; i <= top; i++)
-  {
+void Stack::view() {
+  for (int i = 0; i <= top; i++) {
     std::cout << this->stack[i] << " ";
   }
 }
 
-int Stack::stacktop()
-{
+int Stack::stacktop() {
   if (is_empty())
     return -1;
   return this->stack[this->top];
 }
 
-void stacks()
-{
+void stacks() {
   int size;
   std::cout << "stack size -> ";
   std::cin >> size;
@@ -101,4 +83,103 @@ void stacks()
   std::cout << "Pos 0 of stack: " << st.peek(0) << std::endl;
   std::cout << "Pos 1 of stack: " << st.peek(1) << std::endl;
   std::cout << "Pos 2 of stack: " << st.peek(2) << std::endl;
+}
+
+MyStackADT::MyStackADT(int size) : _size(size), buf(new int[size]) {};
+
+MyStackADT::~MyStackADT() { delete[] this->buf; }
+
+// o(1)
+void MyStackADT::push(int key) {
+  if (is_full())
+    return;
+  buf[++_top] = key;
+}
+
+void MyStackADT::display() {
+  for (int i = 0; i < _size; i++) {
+    printf("%d - ", this->buf[i]);
+  }
+  printf("\n");
+}
+
+// o(1)
+int MyStackADT::pop() {
+  if (is_empty())
+    return -1;
+
+  int e = buf[_top--];
+  return e;
+}
+
+int MyStackADT::peek(int index) {
+  if (_top + 1 - index < 0)
+    return -1;
+  return buf[_top + 1 - index];
+}
+
+bool MyStackADT::is_full() { return _top == _size - 1; }
+
+bool MyStackADT::is_empty() { return _top == -1; }
+
+// ----------------------------
+
+StackLL::~StackLL() {
+  while (_top) {
+    pop();
+  }
+}
+
+void StackLL::push(int key) {
+  ListNode *node = new ListNode(key);
+  node->next = _top;
+  _top = node;
+  _size++;
+}
+
+int StackLL::pop() {
+  if (!_top) {
+    printf("can not pop stack. It is empty");
+    return -1;
+  }
+
+  ListNode *top = _top;
+  int val = top->val;
+  _top = _top->next;
+  _size--;
+  delete top;
+  return val;
+}
+
+int StackLL::stacktop() {
+  if (!_top)
+    return -1;
+  return _top->val;
+}
+
+int StackLL::peek(int position) {
+  if (position <= 0 || position > _size)
+    return -1;
+
+  ListNode *cur = _top;
+  for (int i = 0; i < position - 1; i++) {
+    cur = cur->next;
+  }
+  return cur->val;
+}
+
+void StackLL::display() {
+  if(!_top) {
+    printf("stack is empty. Not printing\n");
+    return;
+  }
+  ListNode *cur = _top;
+  while (cur) {
+    printf("%c", (char)cur->val);
+    cur = cur->next;
+  }
+  printf("\n");
+}
+
+void parenthesis_matching() {
 }

@@ -265,6 +265,14 @@ static void linear_probing() {
   printf("Position of 35: %d\n", search_LP(HT, 35));
 }
 
+// to avoid primary clustering (problem of linear probing)
+// loading factor should also be 0.5; 0.5 = n/size
+// represented by: h'(x) = (h(x) + f(i * i)) % n
+// on each probe, i is multiplied by itself
+static void quadratic_probing() {
+
+}
+
 void hash_main() {
   // hashing works by mapping each value on the keyspace to an index on a
   // hashtable. For this, there is a hash function, that calculates the target
