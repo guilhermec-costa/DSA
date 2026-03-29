@@ -175,11 +175,8 @@ void StackLL::display() {
   }
   ListNode *cur = _top;
   while (cur) {
-    printf("%c", (char)cur->val);
+    printf("%d ", (char)cur->val);
     cur = cur->next;
   }
   printf("\n");
-}
-
-void parenthesis_matching() {
 }

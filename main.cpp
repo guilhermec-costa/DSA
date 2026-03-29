@@ -32,6 +32,7 @@ extern std::string merge_alternately(std::string word1, std::string word2);
 extern void hash_main();
 extern int remove_duplicates(std::vector<int> &nums);
 extern int sqrt_of_x(int x);
+extern void infix_to_postfix();
 
 bool is_balanced(std::string &expr) {
   StackLL exprSt;
@@ -144,4 +145,7 @@ int main() {
   std::string expr = "((a+b)*(c-d))";
   printf("\n--------");
   printf("\nIs %s balanced? %b\n", expr.c_str(), is_balanced(expr));
+
+  printf("---------------\n");
+  infix_to_postfix();
 }

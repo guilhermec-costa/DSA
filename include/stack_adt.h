@@ -1,3 +1,5 @@
+#pragma once
+
 class Stack {
 public:
   int size = 0;
