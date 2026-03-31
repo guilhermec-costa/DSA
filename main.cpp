@@ -33,6 +33,9 @@ extern void hash_main();
 extern int remove_duplicates(std::vector<int> &nums);
 extern int sqrt_of_x(int x);
 extern void infix_to_postfix();
+extern std::vector<int> prefix_sum(std::vector<int> &nums);
+extern std::vector<int> prefix_sum2(std::vector<int> &nums);
+extern void sliding_window();
 
 bool is_balanced(std::string &expr) {
   StackLL exprSt;
@@ -148,4 +151,11 @@ int main() {
 
   printf("---------------\n");
   infix_to_postfix();
+
+  std::vector<int> v{1, 2, 3, 4, 5};
+  prefix_sum(v);
+  printf("\n");
+  prefix_sum2(v);
+  printf("\n");
+  sliding_window();
 }

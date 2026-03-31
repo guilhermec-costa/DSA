@@ -9,6 +9,7 @@ include_directories(${CMAKE_SOURCE_DIR}/include)
 file(GLOB_RECURSE SRC_FILES
     ${CMAKE_SOURCE_DIR}/fundamentals/*.cpp
     ${CMAKE_SOURCE_DIR}/nc/*.cpp
+    ${CMAKE_SOURCE_DIR}/algorithms/*.cpp
     ${CMAKE_SOURCE_DIR}/main.cpp
 )
 
