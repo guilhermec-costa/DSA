@@ -1,9 +1,13 @@
 #include "./fundamentals/arrays_adt2.hpp"
 #include "./include/stack_adt.h"
+#include "./include/doubly_linked_list.h"
 #include <cstdlib>
 #include <cstring>
 #include <string_view>
 #include <vector>
+
+using std::vector;
+using std::string;
 
 struct ListNode;
 extern void revisions();
@@ -36,6 +40,7 @@ extern void infix_to_postfix();
 extern std::vector<int> prefix_sum(std::vector<int> &nums);
 extern std::vector<int> prefix_sum2(std::vector<int> &nums);
 extern void sliding_window();
+extern vector<vector<string>> group_anagrams(vector<string> &strs);
 
 bool is_balanced(std::string &expr) {
   StackLL exprSt;
@@ -145,17 +150,32 @@ int main() {
 
   // if all parenthesis have a matching parenthesis, than the expression is
   // correct
-  std::string expr = "((a+b)*(c-d))";
-  printf("\n--------");
-  printf("\nIs %s balanced? %b\n", expr.c_str(), is_balanced(expr));
+  // std::string expr = "((a+b)*(c-d))";
+  // printf("\n--------");
+  // printf("\nIs %s balanced? %b\n", expr.c_str(), is_balanced(expr));
 
-  printf("---------------\n");
-  infix_to_postfix();
+  // printf("---------------\n");
+  // infix_to_postfix();
 
-  std::vector<int> v{1, 2, 3, 4, 5};
-  prefix_sum(v);
+  // std::vector<int> v{1, 2, 3, 4, 5};
+  // prefix_sum(v);
+  // printf("\n");
+  // prefix_sum2(v);
+  // printf("\n");
+  // sliding_window();
   printf("\n");
-  prefix_sum2(v);
+  vector<string> v {"act","pots","tops","cat","stop","hat"};
+  group_anagrams(v);
+  printf("Test boolean: %b", !!"");
+  
   printf("\n");
-  sliding_window();
+  std::string a = "muito grande...";
+  printf("A content: %s\n", a.c_str());
+  printf("A address: %p\n", &a[0]);
+  std::string b = std::move(a);
+  printf("A content: %s", a.c_str());
+  printf("A address: %p\n", &a[0]);
+  printf("B content: %s\n", a.c_str());
+  printf("\n");
+  doubly_linked_list();
 }
