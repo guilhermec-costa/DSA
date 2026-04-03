@@ -12,4 +12,5 @@ struct DoublyLL {
 };
 
 DoublyLL create_doubly_ll(int arr[], int l);
+void insert_doubly_ll(Node *&HEAD, int val, int index);
 void doubly_linked_list();
